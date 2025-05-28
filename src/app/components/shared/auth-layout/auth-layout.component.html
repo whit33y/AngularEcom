@@ -1,0 +1,23 @@
+<div class="h-screen flex md:flex-row flex-col">
+    <div class="w-8 h-8 m-2 p-2 hover:cursor-pointer" (click)="navigateTo('/products')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="hover:bg-gray-100 rounded-full icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M5 12l14 0" />
+            <path d="M5 12l4 4" />
+            <path d="M5 12l4 -4" />
+        </svg>
+    </div>
+    <div class="md:w-4/6 w-1/1 flex flex-col items-center">
+        <div class="p-2 mb-4 flex flex-col items-center">
+            <img class="w-56" src="../../../assets/logo-rmbg.png" />
+            <ng-content select="[auth-heading]"></ng-content>
+        </div>
+        <ng-content select="[auth-form]"></ng-content>
+    </div>
+
+    <div class="w-2/6 hidden md:block">
+        <img class="h-screen" src="../../../assets/bg-auth3.jpg" />
+    </div>
+</div>
