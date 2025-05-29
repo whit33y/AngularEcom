@@ -1,4 +1,5 @@
-<div class="relative flex flex-col my-4 bg-white shadow-sm border border-slate-200 rounded-lg w-full max-w-sm h-full">
+<div class="relative flex flex-col my-4 bg-white shadow-sm border border-slate-200 rounded-lg w-full max-w-sm h-full hover:cursor-pointer"
+    (click)="sendDetailsId(product_id!)">
     <div class="relative p-2.5 aspect-[4/3] overflow-hidden rounded-xl bg-clip-border">
         <img [src]="image_url" alt="card-image" class="w-full h-full object-cover rounded-md" />
     </div>
@@ -11,8 +12,8 @@
             {{description}}
         </p>
         <button
-            class="rounded-md w-full mt-6 bg-cyan-600 py-2 px-4 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700 active:bg-cyan-700 hover:bg-cyan-700 disabled:pointer-events-none disabled:opacity-50"
-            (click)="sendId(product_id!)">
+            class="rounded-md w-full mt-6 bg-cyan-600 py-2 px-4 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700 active:bg-cyan-700 hover:bg-cyan-700 disabled:pointer-events-none disabled:opacity-50 hover:cursor-pointer"
+            (click)="sendCartId(product_id!); $event.stopPropagation();">
             Add to Cart
         </button>
     </div>

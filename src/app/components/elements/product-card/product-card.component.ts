@@ -13,9 +13,14 @@ export class ProductCardComponent {
   @Input() image_url?: string;
   @Input() description?: string;
   @Input() product_id?: number;
-  @Output() emitId = new EventEmitter();
+  @Output() emitCartId = new EventEmitter();
+  @Output() emitDetailsId = new EventEmitter();
 
-  sendId(id: number) {
-    this.emitId.emit(id);
+  sendCartId(id: number) {
+    this.emitCartId.emit(id);
+  }
+
+  sendDetailsId(id: number) {
+    this.emitDetailsId.emit(id);
   }
 }

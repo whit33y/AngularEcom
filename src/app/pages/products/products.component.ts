@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../services/interfaces/products.interface';
 import { ProductCardComponent } from '../../components/elements/product-card/product-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -11,11 +12,14 @@ import { ProductCardComponent } from '../../components/elements/product-card/pro
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
+  private productsService = inject(ProductsService);
+  private router = inject(Router);
+
   products: Product[] | null = [];
   error: string = '';
   loadingProducts: boolean = false;
 
-  constructor(private productsService: ProductsService) {}
+  constructor() {}
 
   ngOnInit() {
     this.getProducts();
@@ -43,6 +47,22 @@ export class ProductsComponent {
   }
 
   addToCart(id: number) {
-    console.log(id);
+    let cart;
+    let newCart = [];
+    if (localStorage.getItem('cart')) {
+      cart = localStorage.getItem('cart');
+      cart = JSON.parse(cart!);
+      cart.push(id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      console.log(localStorage.getItem('cart'));
+    } else {
+      newCart.push(id);
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      console.log(localStorage.getItem('cart'));
+    }
+  }
+
+  openDetails(id: number) {
+    this.router.navigate(['/products', id]);
   }
 }
