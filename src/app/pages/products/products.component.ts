@@ -3,11 +3,12 @@ import { ProductsService } from '../../services/products.service';
 import { Product } from '../../services/interfaces/products.interface';
 import { ProductCardComponent } from '../../components/elements/product-card/product-card.component';
 import { Router } from '@angular/router';
+import { SpinnerComponent } from '../../components/elements/spinner/spinner.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCardComponent],
+  imports: [ProductCardComponent, SpinnerComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -54,11 +55,11 @@ export class ProductsComponent {
       cart = JSON.parse(cart!);
       cart.push(id);
       localStorage.setItem('cart', JSON.stringify(cart));
-      console.log(localStorage.getItem('cart'));
+      console.log(JSON.parse(localStorage.getItem('cart')!));
     } else {
       newCart.push(id);
       localStorage.setItem('cart', JSON.stringify(newCart));
-      console.log(localStorage.getItem('cart'));
+      console.log(JSON.parse(localStorage.getItem('cart')!));
     }
   }
 
