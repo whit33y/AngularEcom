@@ -1,11 +1,6 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4 sm:px-20 md:px-36">
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
-    <app-product-card class="flex justify-center"></app-product-card>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4 sm:px-20 md:px-48">
+    @for(product of products; track product.id){
+    <app-product-card [name]="product.name" [description]="product.description" [image_url]="product.image_urls"
+        [price]="product.price" [product_id]="product.id" class="mb-4" (emitId)="addToCart($event)"></app-product-card>
+    }
 </div>
