@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../services/interfaces/products.interface';
+import { ProductCardComponent } from '../../components/elements/product-card/product-card.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [ProductCardComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
