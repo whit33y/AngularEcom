@@ -12,4 +12,5 @@ export class NavbarComponent {
   @Input() isLoggedIn?: boolean;
   @Output() emitAuth = new EventEmitter<string>();
   @Output() emitCart = new EventEmitter<string>();
+  @Output() emitHome = new EventEmitter<boolean>();
 }

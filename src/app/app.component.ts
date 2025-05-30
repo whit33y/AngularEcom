@@ -10,11 +10,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CartService } from './services/cart.service';
 import { AuthService } from './services/auth.service';
 import { filter } from 'rxjs';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PopupComponent, NavbarComponent],
+  imports: [RouterOutlet, PopupComponent, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -23,7 +24,7 @@ export class AppComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   showNavbar = signal(false);
-  title = 'syf';
+  title = 'Sport products';
 
   cartCount = computed(() => this.cartService.cartCount());
   isLoggedIn = computed(() => this.authService.sessionStatus());
@@ -58,7 +59,7 @@ export class AppComponent {
     }
   }
 
-  navigateTo() {
-    this.router.navigate(['/cart']);
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 }
