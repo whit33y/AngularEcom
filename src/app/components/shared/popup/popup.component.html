@@ -1,5 +1,5 @@
 @if(popupVisible()){
-<div class="absolute bottom-0 right-0 p-2 m-2 w-64 text-white rounded-2xl opacity-80" [ngClass]="{
+<div class="fixed bottom-0 right-0 p-2 m-2 w-64 text-white rounded-2xl opacity-80" [ngClass]="{
     'bg-red-500': popupType() === 'ERROR',
     'bg-yellow-500': popupType() === 'WARNING',
     'bg-green-500': popupType() === 'SUCCESS',

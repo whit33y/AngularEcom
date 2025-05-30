@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SupabaseClient } from '@supabase/supabase-js';
 import { from, Observable } from 'rxjs';
 import { SupabaseService } from './supabase/supabase.service';
+import { Product } from './interfaces/products.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { SupabaseService } from './supabase/supabase.service';
 export class ProductsService {
   constructor(private supabase: SupabaseService) {}
 
-  getProducts(): Observable<any[]> {
+  getProducts(): Observable<Product[]> {
     return from(
       this.supabase.client
         .from('products')

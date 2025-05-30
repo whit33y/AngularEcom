@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SpinnerComponent } from '../../components/elements/spinner/spinner.component';
 import { BannerComponent } from '../../components/elements/banner/banner.component';
 import { CartService } from '../../services/cart.service';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class ProductsComponent {
   private productsService = inject(ProductsService);
+  private popupService = inject(PopupService);
   private cartService = inject(CartService);
   private router = inject(Router);
 
@@ -51,6 +53,7 @@ export class ProductsComponent {
   }
 
   addToCart(id: number) {
+    this.popupService.openPopup('SUCCESS', 'Added product to cart');
     this.cartService.addToCart(id);
   }
 
