@@ -1,19 +1,22 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../services/interfaces/products.interface';
 import { ProductCardComponent } from '../../components/elements/product-card/product-card.component';
 import { Router } from '@angular/router';
 import { SpinnerComponent } from '../../components/elements/spinner/spinner.component';
+import { BannerComponent } from '../../components/elements/banner/banner.component';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCardComponent, SpinnerComponent],
+  imports: [ProductCardComponent, SpinnerComponent, BannerComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
   private productsService = inject(ProductsService);
+  private cartService = inject(CartService);
   private router = inject(Router);
 
   products: Product[] | null = [];
@@ -48,19 +51,7 @@ export class ProductsComponent {
   }
 
   addToCart(id: number) {
-    let cart;
-    let newCart = [];
-    if (localStorage.getItem('cart')) {
-      cart = localStorage.getItem('cart');
-      cart = JSON.parse(cart!);
-      cart.push(id);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      console.log(JSON.parse(localStorage.getItem('cart')!));
-    } else {
-      newCart.push(id);
-      localStorage.setItem('cart', JSON.stringify(newCart));
-      console.log(JSON.parse(localStorage.getItem('cart')!));
-    }
+    this.cartService.addToCart(id);
   }
 
   openDetails(id: number) {

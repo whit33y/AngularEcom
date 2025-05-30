@@ -10,11 +10,17 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { PopupService } from '../../services/popup.service';
+import { SpinnerComponent } from '../../components/elements/spinner/spinner.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ButtonComponent, AuthLayoutComponent, ReactiveFormsModule],
+  imports: [
+    ButtonComponent,
+    AuthLayoutComponent,
+    ReactiveFormsModule,
+    SpinnerComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -28,6 +34,7 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
+  loading: boolean = false;
   error: string = '';
   async login() {
     const email = this.loginForm.value.email!;
@@ -40,6 +47,11 @@ export class LoginComponent {
         console.error(error);
       } else {
         this.popupService.openPopup('SUCCESS', 'Pomyślnie zalogowano');
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.router.navigate(['/']);
+        }, 2000);
         console.log('Sucesssfully logged in: ', data);
       }
     } catch (err) {

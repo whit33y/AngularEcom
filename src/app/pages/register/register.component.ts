@@ -11,11 +11,17 @@ import {
 import { AuthService } from '../../services/auth.service';
 import { confirmPasswordValidator } from '../../validators/confirm-password';
 import { PopupService } from '../../services/popup.service';
+import { SpinnerComponent } from '../../components/elements/spinner/spinner.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ButtonComponent, AuthLayoutComponent, ReactiveFormsModule],
+  imports: [
+    ButtonComponent,
+    AuthLayoutComponent,
+    ReactiveFormsModule,
+    SpinnerComponent,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -42,6 +48,7 @@ export class RegisterComponent {
     this.router.navigate([`${route}`]);
   }
 
+  loading: boolean = false;
   error: string = '';
   async register() {
     const email = this.registerForm.value.email!;
@@ -53,6 +60,15 @@ export class RegisterComponent {
         this.popupService.openPopup('ERROR', this.error);
         console.error(error);
       } else {
+        this.popupService.openPopup(
+          'SUCCESS',
+          'Sucesfully registered, log in now!'
+        );
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+          this.router.navigate(['/']);
+        }, 2000);
         console.log('New user registered: ', email, 'Data: ', data);
       }
     } catch (err) {

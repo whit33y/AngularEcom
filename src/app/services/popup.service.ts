@@ -21,7 +21,7 @@ export class PopupService {
       this.popupVisible.set(false);
       this.popupType.set('');
       this.popupText.set('');
-    }, 5000);
+    }, 2000);
   }
 
   closePopup() {

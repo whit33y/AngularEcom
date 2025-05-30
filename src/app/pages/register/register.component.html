@@ -1,3 +1,4 @@
+@if(!loading){
 <app-auth-layout>
     <div auth-heading>
         <h2 class="text-4xl font-bold">Welcome to syf!</h2>
@@ -40,4 +41,6 @@
         <app-button text="Register" (send)="register()"
             [disabled]="registerForm.invalid || registerForm.pristine"></app-button>
     </form>
-</app-auth-layout>
+</app-auth-layout>}@else {
+<app-spinner></app-spinner>
+}

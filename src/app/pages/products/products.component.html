@@ -1,11 +1,18 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-20 lg:px-52 xl:px-60">
-    @if(loadingProducts){
-    <app-spinner></app-spinner>
-    }@else{
-    @for(product of products; track product.id){
-    <app-product-card [name]="product.name" [description]="product.description" [image_url]="product.image_urls"
-        [price]="product.price" [product_id]="product.id" class="flex justify-center mb-4"
-        (emitCartId)="addToCart($event)" (emitDetailsId)="openDetails($event)"></app-product-card>
+<div>
+    @if(!loadingProducts){
+    <div>
+        <app-banner></app-banner>
+    </div>
     }
-    }
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-20 lg:px-52 xl:px-60">
+        @if(loadingProducts){
+        <app-spinner></app-spinner>
+        }@else{
+        @for(product of products; track product.id){
+        <app-product-card [name]="product.name" [description]="product.description" [image_url]="product.image_urls"
+            [price]="product.price" [product_id]="product.id" class="flex justify-center mb-4"
+            (emitCartId)="addToCart($event)" (emitDetailsId)="openDetails($event)"></app-product-card>
+        }
+        }
+    </div>
 </div>

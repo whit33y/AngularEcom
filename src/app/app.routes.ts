@@ -8,9 +8,9 @@ import { CartComponent } from './pages/cart/cart.component';
 
 export const routes: Routes = [
   {
-    path: 'cart',
+    path: 'login',
     canActivate: [guestGuard],
-    component: CartComponent,
+    component: LoginComponent,
   },
   {
     path: 'register',
@@ -18,22 +18,21 @@ export const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'login',
-    canActivate: [guestGuard],
-    component: LoginComponent,
+    path: 'cart',
+    component: CartComponent,
   },
   {
     path: 'products',
-    canActivate: [guestGuard],
     component: ProductsComponent,
+    data: { showNavbar: true },
   },
   {
     path: 'products/:id',
-    canActivate: [guestGuard],
     component: ProductDetailsComponent,
+    data: { showNavbar: true },
   },
   {
     path: '**',
-    component: ProductsComponent,
+    redirectTo: 'products',
   },
 ];
