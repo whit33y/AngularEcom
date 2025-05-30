@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -10,4 +10,6 @@ import { Component, Input } from '@angular/core';
 export class NavbarComponent {
   @Input() cartCount?: number;
   @Input() isLoggedIn?: boolean;
+  @Output() emitAuth = new EventEmitter<string>();
+  @Output() emitCart = new EventEmitter<string>();
 }

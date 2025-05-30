@@ -12,10 +12,4 @@ export class ButtonComponent {
   @Input() text?: string;
   @Input() disabled?: boolean;
   @Output() send = new EventEmitter<boolean>();
-
-  sendClick() {
-    if (!this.disabled) {
-      this.send.emit(true);
-    }
-  }
 }

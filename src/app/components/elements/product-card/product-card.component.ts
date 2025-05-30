@@ -15,12 +15,4 @@ export class ProductCardComponent {
   @Input() product_id?: number;
   @Output() emitCartId = new EventEmitter();
   @Output() emitDetailsId = new EventEmitter();
-
-  sendCartId(id: number) {
-    this.emitCartId.emit(id);
-  }
-
-  sendDetailsId(id: number) {
-    this.emitDetailsId.emit(id);
-  }
 }

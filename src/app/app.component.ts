@@ -48,4 +48,17 @@ export class AppComponent {
     }
     return route;
   }
+
+  handleAuth(action: string) {
+    if (action === 'login') {
+      this.router.navigate(['/login']);
+    } else if (action === 'logout') {
+      this.authService.signOut();
+      this.router.navigate(['/login']);
+    }
+  }
+
+  navigateTo() {
+    this.router.navigate(['/cart']);
+  }
 }

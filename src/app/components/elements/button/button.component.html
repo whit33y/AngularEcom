@@ -1,6 +1,6 @@
 <div class="p-2 m-2 w-40 text-cente rounded-2xl" [ngClass]="{
     'bg-sky-300 hover:cursor-pointer': !disabled,
     'bg-gray-400 cursor-not-allowed': disabled
-  }" (click)="sendClick()">
-    <p class="text-white font-semibold text-center">{{text}}</p>
+  }" (click)="!disabled ? send.emit(true) : ''">
+  <p class="text-white font-semibold text-center">{{text}}</p>
 </div>
