@@ -3,15 +3,19 @@ import { ProductsService } from '../../services/products.service';
 import { Product } from '../../services/interfaces/products.interface';
 import { ProductCardComponent } from '../../components/elements/product-card/product-card.component';
 import { Router } from '@angular/router';
-import { SpinnerComponent } from '../../components/elements/spinner/spinner.component';
 import { BannerComponent } from '../../components/elements/banner/banner.component';
 import { CartService } from '../../services/cart.service';
 import { PopupService } from '../../services/popup.service';
+import { ProductCardSkeletonComponent } from '../../components/elements/product-card-skeleton/product-card-skeleton.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [ProductCardComponent, SpinnerComponent, BannerComponent],
+  imports: [
+    ProductCardComponent,
+    BannerComponent,
+    ProductCardSkeletonComponent,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
@@ -21,6 +25,7 @@ export class ProductsComponent {
   private cartService = inject(CartService);
   private router = inject(Router);
 
+  skeletonArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   products: Product[] | null = [];
   error: string = '';
   loadingProducts: boolean = false;
