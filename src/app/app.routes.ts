@@ -20,6 +20,7 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+    data: { showNavbar: true },
   },
   {
     path: 'products',

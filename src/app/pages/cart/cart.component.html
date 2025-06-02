@@ -1,1 +1,14 @@
-<p>cart works!</p>
+<div>
+    <h1 class="text-4xl text-center font-bold text-slate-800 sm:text-5xl">Checkout</h1>
+    @for(product of products; track $index){
+    <div class="my-2 flex flex-col items-center shadow-sm border border-slate-200 rounded-lg md:flex-row md:max-w-4xl">
+        <img class="object-cover w-full rounded-t-lg h-20 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+            [src]="product.image_urls" alt="">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-slate-800">{{product.name}}</h5>
+            <p class="font-extralight text-xs">Ean: {{product.id}}</p>
+            <p class="mb-3 font-normal">Price: {{product.price}}$</p>
+        </div>
+    </div>
+    }
+</div>
