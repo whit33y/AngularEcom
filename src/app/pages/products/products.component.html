@@ -5,14 +5,16 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-20 lg:px-52 xl:px-60">
         @if(loadingProducts){
         @for(product of skeletonArray; track $index){
-        <app-product-card-skeleton></app-product-card-skeleton>
+        <app-product-card-skeleton class="flex justify-center mb-4"></app-product-card-skeleton>
         }
         }@else{
-        @for(product of products; track product.id){
+        @for(product of showProducts; track product.id){
         <app-product-card [name]="product.name" [description]="product.description" [image_url]="product.image_urls"
             [price]="product.price" [product_id]="product.id" class="flex justify-center mb-4"
             (emitCartId)="addToCart($event)" (emitDetailsId)="openDetails($event)"></app-product-card>
         }
         }
     </div>
+    <app-pagination #bottom [elementsCount]="products?.length" [currentPage]="currentPage" [maxPage]="maxPages"
+        [startIndex]="startIndex" [endIndex]="endIndex" (changePage)="changePage($event)"></app-pagination>
 </div>
