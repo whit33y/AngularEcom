@@ -55,6 +55,7 @@ export class AppComponent {
       this.router.navigate(['/login']);
     } else if (action === 'logout') {
       this.authService.signOut();
+      this.cartService.deleteCart();
       this.router.navigate(['/login']);
     }
   }

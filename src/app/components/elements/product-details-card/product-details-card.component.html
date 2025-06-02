@@ -1,0 +1,35 @@
+<section class="body-font overflow-hidden bg-white">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="lg:w-4/5 mx-auto flex flex-wrap">
+            @if(!product){
+            <div class="lg:w-1/2 w-full h-80 bg-gray-300 rounded animate-pulse"></div>
+            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 space-y-4 animate-pulse">
+                <div class="h-4 w-24 bg-gray-300 rounded"></div>
+                <div class="h-6 w-64 bg-gray-300 rounded"></div>
+                <div class="h-20 w-full bg-gray-300 rounded"></div>
+                <div class="flex mt-8">
+                    <div class="h-8 w-20 bg-gray-300 rounded"></div>
+                    <div class="ml-auto h-10 w-32 bg-gray-300 rounded"></div>
+                </div>
+            </div>
+            } @else {
+            <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
+                [src]="product.image_urls" />
+            <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                <h2 class="text-sm title-font text-gray-500 tracking-widest"></h2>
+                <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ product.name }}</h1>
+                <p class="leading-relaxed">{{ product.description }}</p>
+                <div class="flex mt-8">
+                    <span class="title-font font-medium text-2xl text-gray-900">$58.00</span>
+                    <button
+                        class="flex ml-auto text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded hover:cursor-pointer"
+                        (click)="emitId.emit(product.id)">
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>

@@ -22,4 +22,20 @@ export class ProductsService {
         })
     );
   }
+
+  getProduct(id: number): Observable<Product> {
+    return from(
+      this.supabase.client
+        .from('products')
+        .select('*')
+        .eq('id', id)
+        .single()
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(error.message);
+          }
+          return data;
+        })
+    );
+  }
 }

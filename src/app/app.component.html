@@ -1,11 +1,14 @@
-<div class="h-screen">
+<div class="min-h-screen flex flex-col">
     @if(showNavbar()){
     <app-navbar (emitCart)="navigateTo('/cart')" (emitAuth)="handleAuth($event)" (emitHome)="navigateTo('/')"
         [cartCount]="cartCount()" [isLoggedIn]="isLoggedIn()"></app-navbar>
     }
-    <router-outlet></router-outlet>
+    <main class="flex-grow">
+        <router-outlet></router-outlet>
+        <app-popup></app-popup>
+    </main>
+
     @if(showNavbar()){
     <app-footer></app-footer>
     }
-    <app-popup></app-popup>
 </div>
