@@ -7,18 +7,13 @@ import {
 } from '../../services/interfaces/products.interface';
 import { CartCardComponent } from '../../components/elements/cart-card/cart-card.component';
 import { CartCardSkeletonComponent } from '../../components/elements/cart-card-skeleton/cart-card-skeleton.component';
-import { CurrencyPipe } from '@angular/common';
-import { ButtonComponent } from '../../components/elements/button/button.component';
+
+import { CheckoutComponent } from '../../components/elements/checkout/checkout.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [
-    CartCardComponent,
-    CartCardSkeletonComponent,
-    CurrencyPipe,
-    ButtonComponent,
-  ],
+  imports: [CartCardComponent, CartCardSkeletonComponent, CheckoutComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

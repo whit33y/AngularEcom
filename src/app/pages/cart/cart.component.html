@@ -1,28 +1,6 @@
 <div class="w-full flex flex-col md:flex-row">
-    <div class="flex flex-col justify-center md:hidden">
-        <h1 class="text-4xl text-center font-bold text-slate-800">Checkout</h1>
-        <h2 class="text-2xl text-center font-bold text-slate-800 mb-4">Payment summary</h2>
-        <div class="flex flex-col items-end w-1/1">
-            <div class="flex flex-row justify-between w-1/1 text-lg">
-                <p class="font-semibold">Subtotal: </p>
-                <p>{{productsSum}}$</p>
-            </div>
-            <div class="flex flex-row justify-between w-1/1 text-lg">
-                <p class="font-semibold">Shipping: </p>
-                <p>20$</p>
-            </div>
-            <div class="flex flex-row justify-between w-1/1 text-lg">
-                <p class="font-semibold">Tax: </p>
-                <p>{{((productsSum + 20) * 0.23 | currency: 'USD') }}</p>
-            </div>
-            <div class="flex flex-row justify-between w-1/1 text-lg border-t border-slate-200">
-                <p class="font-bold">Total: </p>
-                <p>{{(productsSum + 20 | currency: 'USD')}}</p>
-            </div>
-            <div>
-                <app-button text="Checkout" (send)="goToCheckout()"></app-button>
-            </div>
-        </div>
+    <div class="md:hidden">
+        <app-checkout [mobile]="true" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
     </div>
     <div class="md:w-3/4 w-4/4">
         <h1 class="text-4xl text-center font-bold text-slate-800  hidden justify-center md:flex">
@@ -38,27 +16,6 @@
         }
     </div>
     <div class="w-1/4 hidden md:flex flex-col mx-4">
-        <h1 class="text-2xl text-center font-bold text-slate-800 mb-4">Payment summary</h1>
-        <div class="flex flex-col items-end w-1/1">
-            <div class="flex flex-row justify-between w-1/1 text-lg">
-                <p class="font-semibold">Subtotal: </p>
-                <p>{{(productsSum| currency: 'USD')}}</p>
-            </div>
-            <div class="flex flex-row justify-between w-1/1 text-lg">
-                <p class="font-semibold">Shipping: </p>
-                <p>{{(20| currency: 'USD')}}</p>
-            </div>
-            <div class="flex flex-row justify-between w-1/1 text-lg">
-                <p class="font-semibold">Tax: </p>
-                <p>{{((productsSum + 20) * 0.23 | currency: 'USD') }}</p>
-            </div>
-            <div class="flex flex-row justify-between w-1/1 text-lg border-t border-slate-200">
-                <p class="font-bold">Total: </p>
-                <p>{{(productsSum + 20 | currency: 'USD')}}</p>
-            </div>
-            <div>
-                <app-button text="Checkout" (send)="goToCheckout()"></app-button>
-            </div>
-        </div>
+        <app-checkout [mobile]="false" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
     </div>
 </div>
