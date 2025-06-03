@@ -1,12 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ProductsService } from '../../services/products.service';
-import { Product } from '../../services/interfaces/products.interface';
+import {
+  Product,
+  ProductCount,
+} from '../../services/interfaces/products.interface';
+import { CartCardComponent } from '../../components/elements/cart-card/cart-card.component';
+import { CartCardSkeletonComponent } from '../../components/elements/cart-card-skeleton/cart-card-skeleton.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [CartCardComponent, CartCardSkeletonComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
@@ -15,6 +20,8 @@ export class CartComponent {
   private productService = inject(ProductsService);
 
   products: Product[] = [];
+  productsCount: ProductCount[] = [];
+  count: any;
   productsSum: number = 0;
   loading: boolean = false;
   ngOnInit() {
@@ -22,7 +29,6 @@ export class CartComponent {
     for (let i = 0; i < cart.length; i++) {
       this.getProduct(cart[i]);
     }
-    console.log(this.products);
   }
 
   getProduct(id: number) {
@@ -31,6 +37,13 @@ export class CartComponent {
       next: (response) => {
         this.products.push(response);
         this.productsSum += response.price;
+        const existing = this.productsCount.find((p) => p.id === response.id);
+
+        if (existing) {
+          existing.count += 1;
+        } else {
+          this.productsCount.push({ ...response, count: 1 });
+        }
       },
       error: (err) => {
         console.error(err);
