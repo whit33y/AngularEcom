@@ -9,15 +9,28 @@
         </div>
         <div class="flex flex-row justify-between w-1/1 text-lg">
             <p class="font-semibold">Shipping: </p>
-            <p>20$</p>
+            @if(productsSum! > 0){
+            <p>{{(20 | currency: 'USD')}}</p>
+            }@else {
+            <p>{{(0 | currency: 'USD')}}</p>
+            }
+
         </div>
         <div class="flex flex-row justify-between w-1/1 text-lg">
             <p class="font-semibold">Tax: </p>
+            @if(productsSum! > 0){
             <p>{{((productsSum! + 20) * 0.23 | currency: 'USD') }}</p>
+            }@else {
+            <p>{{( 0 | currency: 'USD') }}</p>
+            }
         </div>
         <div class="flex flex-row justify-between w-1/1 text-lg border-t border-slate-200">
             <p class="font-bold">Total: </p>
-            <p>{{(productsSum! + 20 | currency: 'USD')}}</p>
+            @if(productsSum! > 0){
+            <p>{{(productsSum! + 20 | currency: 'USD')}}</p>}
+            @else {
+            <p>{{( 0 | currency: 'USD') }}</p>
+            }
         </div>
         <div>
             <app-button text="Checkout" (send)="checkout.emit()"></app-button>
@@ -34,15 +47,27 @@
         </div>
         <div class="flex flex-row justify-between w-1/1 text-lg">
             <p class="font-semibold">Shipping: </p>
-            <p>{{(20| currency: 'USD')}}</p>
+            @if(productsSum! > 0){
+            <p>{{(20 | currency: 'USD')}}</p>
+            }@else {
+            <p>{{(0 | currency: 'USD')}}</p>
+            }
         </div>
         <div class="flex flex-row justify-between w-1/1 text-lg">
             <p class="font-semibold">Tax: </p>
+            @if(productsSum! > 0){
             <p>{{((productsSum! + 20) * 0.23 | currency: 'USD') }}</p>
+            }@else {
+            <p>{{( 0 | currency: 'USD') }}</p>
+            }
         </div>
         <div class="flex flex-row justify-between w-1/1 text-lg border-t border-slate-200">
             <p class="font-bold">Total: </p>
-            <p>{{(productsSum! + 20 | currency: 'USD')}}</p>
+            @if(productsSum! > 0){
+            <p>{{(productsSum! + 20 | currency: 'USD')}}</p>}
+            @else {
+            <p>{{( 0 | currency: 'USD') }}</p>
+            }
         </div>
         <div>
             <app-button text="Checkout" (send)="checkout.emit()"></app-button>
