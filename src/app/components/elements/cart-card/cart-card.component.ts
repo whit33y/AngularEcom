@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ProductCount } from '../../../services/interfaces/products.interface';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart-card',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './cart-card.component.html',
   styleUrl: './cart-card.component.css',
 })

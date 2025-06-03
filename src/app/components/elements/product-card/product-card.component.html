@@ -6,7 +6,7 @@
     <div class="p-4 flex flex-col justify-between flex-1">
         <div class="mb-2 flex items-center justify-between">
             <p class="text-slate-800 text-lg sm:text-xl font-semibold">{{name}}</p>
-            <p class="text-cyan-600 text-lg sm:text-xl font-semibold">${{price}}</p>
+            <p class="text-cyan-600 text-lg sm:text-xl font-semibold">{{(price| currency: 'USD')}}</p>
         </div>
         <p class="text-slate-600 text-sm sm:text-base leading-normal font-light">
             {{description}}
