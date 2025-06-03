@@ -69,7 +69,6 @@ export class RegisterComponent {
           this.loading = false;
           this.router.navigate(['/']);
         }, 2000);
-        console.log('New user registered: ', email, 'Data: ', data);
       }
     } catch (err) {
       this.error = 'Something went wrong.';

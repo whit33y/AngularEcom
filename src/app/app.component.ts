@@ -39,7 +39,6 @@ export class AppComponent {
       .subscribe(() => {
         const currentRoute = this.getCurrentRoute(this.router.routerState.root);
         this.showNavbar.set(currentRoute.snapshot.data['showNavbar']);
-        console.log(this.showNavbar());
       });
   }
 

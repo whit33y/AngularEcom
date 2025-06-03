@@ -8,10 +8,8 @@ export const guestGuard: CanActivateFn = async (route, state) => {
   const { data } = await authService.getSession();
 
   if (!data.session) {
-    console.log('Niezalogowany');
     return true;
   } else {
-    console.log('Zalogowany');
     return router.createUrlTree(['/products']);
   }
 };

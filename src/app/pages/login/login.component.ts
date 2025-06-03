@@ -52,7 +52,6 @@ export class LoginComponent {
           this.loading = false;
           this.router.navigate(['/']);
         }, 2000);
-        console.log('Sucesssfully logged in: ', data);
       }
     } catch (err) {
       this.error = 'Something went wrong.';

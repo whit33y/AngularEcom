@@ -49,7 +49,6 @@ export class ProductsComponent {
         this.maxPages = Math.ceil(data.length / this.limit);
         this.currentPage = 1;
         this.updateShownProducts();
-        console.log(this.products);
       },
       error: (err) => {
         this.error = err;

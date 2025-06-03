@@ -31,7 +31,6 @@ export class ProductDetailsComponent {
     this.productService.getProduct(id).subscribe({
       next: (data) => {
         this.product = data;
-        console.log(this.product);
       },
       error: (err) => {
         console.error(err);
