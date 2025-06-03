@@ -1,0 +1,12 @@
+<div class="my-2 flex flex-col items-center shadow-sm border border-slate-200 rounded-lg md:flex-row md:max-w-4xl">
+    <img class="object-cover w-full rounded-t-lg h-20 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+        [src]="product?.image_urls" alt="">
+    <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-slate-800">{{product?.name}}</h5>
+        <p class="font-normal text-xs">Quantity: {{product?.count}}</p>
+        <p class="font-normal">Price: {{product?.price! * product?.count!}}$</p>
+        <p class="font-extralight text-xs mb-3">Price for one item: {{product?.price}}$</p>
+        <p class="font-extralight text-xs">Ean: {{product?.id}}</p>
+
+    </div>
+</div>
