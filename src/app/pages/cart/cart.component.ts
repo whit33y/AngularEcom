@@ -60,4 +60,8 @@ export class CartComponent {
       },
     });
   }
+
+  goToCheckout() {
+    console.log('Checkout!');
+  }
 }

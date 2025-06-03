@@ -20,7 +20,7 @@
                 <p>{{(productsSum + 20 | currency: 'USD')}}</p>
             </div>
             <div>
-                <app-button text="Checkout"></app-button>
+                <app-button text="Checkout" (send)="goToCheckout()"></app-button>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
                 <p>{{(productsSum + 20 | currency: 'USD')}}</p>
             </div>
             <div>
-                <app-button text="Checkout"></app-button>
+                <app-button text="Checkout" (send)="goToCheckout()"></app-button>
             </div>
         </div>
     </div>
