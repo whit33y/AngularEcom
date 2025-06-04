@@ -9,6 +9,7 @@ import { CartCardComponent } from '../../components/elements/cart-card/cart-card
 import { CartCardSkeletonComponent } from '../../components/elements/cart-card-skeleton/cart-card-skeleton.component';
 
 import { CheckoutComponent } from '../../components/elements/checkout/checkout.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,7 @@ import { CheckoutComponent } from '../../components/elements/checkout/checkout.c
 export class CartComponent {
   private cartService = inject(CartService);
   private productService = inject(ProductsService);
+  private router = inject(Router);
 
   products: Product[] = [];
   productsCount: ProductCount[] = [];
@@ -58,5 +60,9 @@ export class CartComponent {
 
   goToCheckout() {
     console.log('Checkout!');
+  }
+
+  openDetails(id: number) {
+    this.router.navigate(['/products', id]);
   }
 }

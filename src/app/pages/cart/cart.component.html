@@ -7,7 +7,7 @@
             Checkout</h1>
         @if(!loading){
         @for(product of productsCount; track $index){
-        <app-cart-card [product]="product"></app-cart-card>
+        <app-cart-card [product]="product" (emitId)="openDetails($event)"></app-cart-card>
         }
         }@else {
         @for(element of [1,2,3,4,5]; track $index){

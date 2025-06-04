@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductCount } from '../../../services/interfaces/products.interface';
 import { CurrencyPipe } from '@angular/common';
 
@@ -11,4 +11,5 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CartCardComponent {
   @Input() product?: ProductCount;
+  @Output() emitId = new EventEmitter();
 }
