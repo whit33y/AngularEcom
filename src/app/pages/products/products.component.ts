@@ -56,6 +56,7 @@ export class ProductsComponent {
         this.maxPages = Math.ceil(data.length / this.limit);
         this.currentPage = 1;
         this.updateShownProducts();
+        this.changeSort(this.selectedSort);
       },
       error: (err) => {
         this.error = err;
@@ -85,6 +86,7 @@ export class ProductsComponent {
         this.maxPages = Math.ceil(data.length / this.limit);
         this.currentPage = 1;
         this.updateShownProducts();
+        this.changeSort(this.selectedSort);
       },
       error: (err) => {
         this.error = err;
@@ -146,7 +148,7 @@ export class ProductsComponent {
   }
 
   showDropdown = false;
-  showSort = false;
+
   selectedCategory = 'all';
   changeCategory(category: string) {
     this.selectedCategory = category;
@@ -156,8 +158,25 @@ export class ProductsComponent {
       this.getProductsByCategory(category);
     }
   }
-
+  showSort = false;
+  selectedSort = 'newtoold';
   changeSort(sort: string) {
+    switch (sort) {
+      case 'lowtohigh':
+        this.products!.sort((a, b) => a.price - b.price);
+        break;
+      case 'hightolow':
+        this.products!.sort((a, b) => b.price - a.price);
+        break;
+      case 'newtoold':
+        this.products!.sort((a, b) => b.id - a.id);
+        break;
+      case 'oldtonew':
+        this.products!.sort((a, b) => a.id - b.id);
+        break;
+    }
+    this.currentPage = 1;
+    this.updateShownProducts();
     console.log(sort);
   }
 }
