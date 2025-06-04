@@ -11,6 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CategoryDropdownComponent {
   @Input() categories?: string[];
   @Input() showDropdown?: boolean;
+  @Input() selectedCategory?: string;
   @Output() emitDropdown = new EventEmitter();
   @Output() emitCategory = new EventEmitter();
 }

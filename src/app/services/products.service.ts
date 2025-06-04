@@ -23,6 +23,21 @@ export class ProductsService {
     );
   }
 
+  getProductsByCategory(category: string): Observable<Product[]> {
+    return from(
+      this.supabase.client
+        .from('products')
+        .select('*')
+        .eq('category', category)
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(error.message);
+          }
+          return data;
+        })
+    );
+  }
+
   getProduct(id: number): Observable<Product> {
     return from(
       this.supabase.client

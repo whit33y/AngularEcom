@@ -4,8 +4,8 @@
     </div>
     <div class="flex justify-center" #product>
         <app-category-dropdown [categories]="categories" [showDropdown]="showDropdown"
-            (emitDropdown)="showDropdown = !showDropdown"
-            (emitCategory)="changeCategory($event)"></app-category-dropdown>
+            (emitDropdown)="showDropdown = !showDropdown" (emitCategory)="changeCategory($event)"
+            [selectedCategory]="selectedCategory"></app-category-dropdown>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-20 lg:px-52 xl:px-60">
         @if(loadingProducts){
