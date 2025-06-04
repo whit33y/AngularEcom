@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../services/interfaces/products.interface';
 import { ProductCardComponent } from '../../components/elements/product-card/product-card.component';
@@ -8,6 +8,8 @@ import { CartService } from '../../services/cart.service';
 import { PopupService } from '../../services/popup.service';
 import { ProductCardSkeletonComponent } from '../../components/elements/product-card-skeleton/product-card-skeleton.component';
 import { PaginationComponent } from '../../components/elements/pagination/pagination.component';
+import { CommonModule } from '@angular/common';
+import { CategoryDropdownComponent } from '../../components/elements/category-dropdown/category-dropdown.component';
 
 @Component({
   selector: 'app-products',
@@ -17,6 +19,8 @@ import { PaginationComponent } from '../../components/elements/pagination/pagina
     BannerComponent,
     ProductCardSkeletonComponent,
     PaginationComponent,
+    CommonModule,
+    CategoryDropdownComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
@@ -29,6 +33,7 @@ export class ProductsComponent {
 
   skeletonArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   products: Product[] | null = [];
+  categories: string[] = [];
   error: string = '';
   loadingProducts: boolean = false;
 
@@ -57,6 +62,12 @@ export class ProductsComponent {
       },
       complete: () => {
         this.loadingProducts = false;
+        this.products?.forEach((value) => {
+          if (!this.categories.includes(value.category)) {
+            this.categories.push(value.category);
+          }
+        });
+        console.log(this.categories);
       },
     });
   }
@@ -74,6 +85,7 @@ export class ProductsComponent {
   currentPage: number = 1;
   limit: number = 9;
   showProducts: Product[] | null = [];
+  @ViewChild('product') productsRef!: ElementRef;
 
   changePage(action: string) {
     if (action === 'prev' && this.currentPage > 1) {
@@ -84,7 +96,7 @@ export class ProductsComponent {
       this.updateShownProducts();
     }
     setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' });
+      this.productsRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }, 0);
   }
 
@@ -102,4 +114,10 @@ export class ProductsComponent {
     this.startIndex = startIndex + 1;
     this.showProducts = this.products.slice(startIndex, endIndex);
   }
+
+  changeCategory(category: string) {
+    console.log(category);
+  }
+
+  showDropdown = false;
 }
