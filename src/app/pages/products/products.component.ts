@@ -10,6 +10,7 @@ import { ProductCardSkeletonComponent } from '../../components/elements/product-
 import { PaginationComponent } from '../../components/elements/pagination/pagination.component';
 import { CommonModule } from '@angular/common';
 import { CategoryDropdownComponent } from '../../components/elements/category-dropdown/category-dropdown.component';
+import { SortDropdownComponent } from '../../components/elements/sort-dropdown/sort-dropdown.component';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +22,7 @@ import { CategoryDropdownComponent } from '../../components/elements/category-dr
     PaginationComponent,
     CommonModule,
     CategoryDropdownComponent,
+    SortDropdownComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
@@ -144,6 +146,7 @@ export class ProductsComponent {
   }
 
   showDropdown = false;
+  showSort = false;
   selectedCategory = 'all';
   changeCategory(category: string) {
     this.selectedCategory = category;
@@ -152,5 +155,9 @@ export class ProductsComponent {
     } else {
       this.getProductsByCategory(category);
     }
+  }
+
+  changeSort(sort: string) {
+    console.log(sort);
   }
 }

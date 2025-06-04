@@ -1,0 +1,35 @@
+<div class="relative inline-block">
+    <button (click)="emitDropdown.emit(true)"
+        class="justify-center text-white w-36 mx-6 bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center hover:cursor-pointer"
+        type="button">
+        Sort
+        <svg class="w-2.5 h-2.5 ms-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 4 4 4-4" />
+        </svg>
+    </button>
+    <div id="dropdownDivider"
+        class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600"
+        [ngClass]="showSort ? 'absolute' : 'hidden'">
+        <ul class="py-2 text-sm text-gray-200">
+            <li>
+                <button (click)="emitSort.emit('lowtohigh'); emitDropdown.emit(true)"
+                    class="block px-4 py-2 w-full text-start hover:bg-gray-600 hover:cursor-pointer">price: low to
+                    high</button>
+            </li>
+            <li>
+                <button (click)="emitSort.emit('hightolow'); emitDropdown.emit(true)"
+                    class="block px-4 py-2 w-full text-start hover:bg-gray-600 hover:cursor-pointer">price: high to
+                    low</button>
+            </li>
+            <li>
+                <button (click)="emitSort.emit('oldtonew'); emitDropdown.emit(true)"
+                    class="block px-4 py-2 w-full text-start hover:bg-gray-600 hover:cursor-pointer">oldest</button>
+            </li>
+        </ul>
+        <div class="py-2">
+            <button (click)="emitSort.emit('newest to oldest'); emitDropdown.emit(true)"
+                class="block text-sm px-4 py-2 w-full text-start hover:bg-gray-600 hover:cursor-pointer text-gray-200">newest</button>
+        </div>
+    </div>
+</div>
