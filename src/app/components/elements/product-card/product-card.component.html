@@ -9,7 +9,7 @@
             <p class="text-cyan-600 text-lg sm:text-xl font-semibold">{{(price| currency: 'USD')}}</p>
         </div>
         <p class="text-slate-600 text-sm sm:text-base leading-normal font-light">
-            {{description}}
+            {{description | slice:0:90}}...
         </p>
         <button
             class="rounded-md w-full mt-6 bg-cyan-600 py-2 px-4 text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-cyan-700 active:bg-cyan-700 hover:bg-cyan-700 disabled:pointer-events-none disabled:opacity-50 hover:cursor-pointer"

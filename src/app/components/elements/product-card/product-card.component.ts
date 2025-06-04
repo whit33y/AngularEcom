@@ -1,10 +1,10 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, SlicePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, SlicePipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
