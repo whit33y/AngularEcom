@@ -70,7 +70,6 @@ export class ProductsComponent {
             this.categories.push(value.category);
           }
         });
-        console.log(this.categories);
       },
     });
   }
@@ -100,7 +99,6 @@ export class ProductsComponent {
             this.categories.push(value.category);
           }
         });
-        console.log(this.categories);
       },
     });
   }
@@ -177,6 +175,5 @@ export class ProductsComponent {
     }
     this.currentPage = 1;
     this.updateShownProducts();
-    console.log(sort);
   }
 }
