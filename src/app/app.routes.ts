@@ -6,6 +6,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { SuccessComponent } from './pages/success/success.component';
+import { CancelComponent } from './pages/cancel/cancel.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,11 @@ export const routes: Routes = [
   {
     path: 'success',
     component: SuccessComponent,
+    data: { showNavbar: true },
+  },
+  {
+    path: 'cancel',
+    component: CancelComponent,
     data: { showNavbar: true },
   },
   {

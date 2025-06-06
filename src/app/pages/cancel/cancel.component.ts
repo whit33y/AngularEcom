@@ -3,18 +3,18 @@ import { Router } from '@angular/router';
 import { PopupService } from '../../services/popup.service';
 
 @Component({
-  selector: 'app-success',
+  selector: 'app-cancel',
   standalone: true,
   imports: [],
-  templateUrl: './success.component.html',
-  styleUrl: './success.component.css',
+  templateUrl: './cancel.component.html',
+  styleUrl: './cancel.component.css',
 })
-export class SuccessComponent {
+export class CancelComponent {
   private router = inject(Router);
   private popupService = inject(PopupService);
 
   ngOnInit() {
-    this.popupService.openPopup('SUCCESS', 'Your order is on the way!');
+    this.popupService.openPopup('ERROR', 'Something went wrong!');
   }
 
   goToHome() {
