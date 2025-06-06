@@ -102,6 +102,7 @@ export class ProductsComponent {
       },
     });
   }
+
   addToCart(id: number) {
     this.popupService.openPopup('SUCCESS', 'Added product to cart');
     this.cartService.addToCart(id);
@@ -116,7 +117,6 @@ export class ProductsComponent {
   limit: number = 9;
   showProducts: Product[] | null = [];
   @ViewChild('product') productsRef!: ElementRef;
-
   changePage(action: string) {
     if (action === 'prev' && this.currentPage > 1) {
       this.currentPage--;
@@ -146,7 +146,6 @@ export class ProductsComponent {
   }
 
   showDropdown = false;
-
   selectedCategory = 'all';
   changeCategory(category: string) {
     this.selectedCategory = category;
@@ -156,6 +155,7 @@ export class ProductsComponent {
       this.getProductsByCategory(category);
     }
   }
+
   showSort = false;
   selectedSort = 'newtoold';
   changeSort(sort: string) {
