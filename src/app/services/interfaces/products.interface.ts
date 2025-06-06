@@ -5,6 +5,7 @@ export type Product = {
   name: string;
   price: number;
   category: string;
+  price_id: string;
 };
 export type ProductCount = {
   id: number;
@@ -14,4 +15,6 @@ export type ProductCount = {
   price: number;
   category: string;
   count: number;
+  price_id: string;
 };
+

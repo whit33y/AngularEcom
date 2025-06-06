@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { SuccessComponent } from './pages/success/success.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,11 @@ export const routes: Routes = [
   {
     path: 'products/:id',
     component: ProductDetailsComponent,
+    data: { showNavbar: true },
+  },
+  {
+    path: 'success',
+    component: SuccessComponent,
     data: { showNavbar: true },
   },
   {

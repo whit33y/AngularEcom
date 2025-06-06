@@ -1,6 +1,8 @@
 <div class="w-full flex flex-col md:flex-row">
     <div class="md:hidden">
+        @if(productsCount.length > 0){
         <app-checkout [mobile]="true" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
+        }
     </div>
     <div class="md:w-3/4 w-4/4">
         <h1 class="text-4xl text-center font-bold text-slate-800  hidden justify-center md:flex">
@@ -16,6 +18,8 @@
         }
     </div>
     <div class="w-1/4 hidden md:flex flex-col mx-4">
+        @if(productsCount.length > 0){
         <app-checkout [mobile]="false" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
+        }
     </div>
 </div>

@@ -10,6 +10,7 @@ import { CartCardSkeletonComponent } from '../../components/elements/cart-card-s
 
 import { CheckoutComponent } from '../../components/elements/checkout/checkout.component';
 import { Router } from '@angular/router';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'app-cart',
@@ -22,10 +23,10 @@ export class CartComponent {
   private cartService = inject(CartService);
   private productService = inject(ProductsService);
   private router = inject(Router);
+  private popupService = inject(PopupService);
 
   products: Product[] = [];
   productsCount: ProductCount[] = [];
-  count: any;
   productsSum: number = 0;
   loading: boolean = false;
   ngOnInit() {
@@ -59,8 +60,38 @@ export class CartComponent {
   }
 
   goToCheckout() {
-    console.log('Checkout!');
-  }
+  const items = this.productsCount.map(product => ({
+    priceId: product.price_id,
+    quantity: product.count,
+  }));
+
+  items.push({priceId: 'price_1RWxj6JxVIR4Q0T4eeBAXNlA', quantity: 1})
+
+  fetch('https://eqoubrqeyrknukljugim.supabase.co/functions/v1/create-checkout-session', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ items }),  
+  })
+    .then(async (res) => {
+      if (!res.ok) throw new Error('Failed to create checkout session');
+      return res.json();
+    })
+    .then((data) => {
+      if (data.url) {
+        this.cartService.deleteCart();
+        window.location.href = data.url; 
+        this.popupService.openPopup('SUCCESS', 'Your order was successfully sended!');
+      } else {
+        console.error('No checkout URL in response');
+      }
+    })
+    .catch((err) => {
+      console.error('Checkout error:', err);
+    });
+}
+
 
   openDetails(id: number) {
     this.router.navigate(['/products', id]);

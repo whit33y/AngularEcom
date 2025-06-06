@@ -1,11 +1,11 @@
 {
-  "deno.enable": true,
+  "deno.enable": false,
   "deno.enablePaths": ["supabase/functions"],
-  "deno.lint": true,
-  "deno.unstable": true,
+  "deno.lint": false,
+  "deno.unstable": false,
   "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.validate.enable": false,
-  "javascript.validate.enable": false
+  "typescript.validate.enable": true,
+  "javascript.validate.enable": true
 }
