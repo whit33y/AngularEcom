@@ -1,9 +1,9 @@
-<div class="flex h-20 justify-between bg-sky-200/60">
+<div class="flex h-20 justify-between bg-sky-200/60 text-white dark:bg-sky-500 dark:text-black">
     <div>
         <img class="w-20 hover:cursor-pointer" src="../../../assets/logo-rmbg.png" (click)="emitHome.emit(true)" />
     </div>
     <div class="flex">
-        <div class="flex items-center justify-center text-white">
+        <div class="flex items-center justify-center text-white dark:text-black">
             <div class="relative w-fit hover:cursor-pointer" (click)="emitCart.emit('true')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -15,7 +15,7 @@
                     <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
                 <div
-                    class="absolute -top-2 -right-2 w-5 h-5 bg-sky-500 text-white text-xs rounded-full flex items-center justify-center">
+                    class="absolute -top-2 -right-2 w-5 h-5 bg-sky-500 dark:bg-cyan-600 text-white text-xs rounded-full flex items-center justify-center">
                     {{ cartCount }}
                 </div>
             </div>

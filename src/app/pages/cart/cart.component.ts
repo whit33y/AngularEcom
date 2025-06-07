@@ -7,9 +7,9 @@ import {
 } from '../../services/interfaces/products.interface';
 import { CartCardComponent } from '../../components/elements/cart-card/cart-card.component';
 import { CartCardSkeletonComponent } from '../../components/elements/cart-card-skeleton/cart-card-skeleton.component';
-
 import { CheckoutComponent } from '../../components/elements/checkout/checkout.component';
 import { Router } from '@angular/router';
+import { PaymentService } from '../../services/stripe/payment.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 })
 export class CartComponent {
   private cartService = inject(CartService);
+  private paymentService = inject(PaymentService);
   private productService = inject(ProductsService);
   private router = inject(Router);
 
@@ -65,20 +66,8 @@ export class CartComponent {
 
     items.push({ priceId: 'price_1RWxj6JxVIR4Q0T4eeBAXNlA', quantity: 1 });
 
-    fetch(
-      'https://eqoubrqeyrknukljugim.supabase.co/functions/v1/create-checkout-session',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ items }),
-      }
-    )
-      .then(async (res) => {
-        if (!res.ok) throw new Error('Failed to create checkout session');
-        return res.json();
-      })
+    this.paymentService
+      .checkout(items)
       .then((data) => {
         if (data.url) {
           this.cartService.deleteCart();

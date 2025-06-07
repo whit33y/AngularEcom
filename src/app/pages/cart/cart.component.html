@@ -1,4 +1,4 @@
-<div class="w-full flex flex-col md:flex-row">
+<div class="w-full h-full flex flex-col md:flex-row bg-white text-black dark:bg-gray-300 dark:text-white">
     <div class="md:hidden">
         @if(productsCount.length > 0){
         <app-checkout [mobile]="true" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
@@ -7,6 +7,9 @@
     <div class="md:w-3/4 w-4/4">
         <h1 class="text-4xl text-center font-bold text-slate-800  hidden justify-center md:flex">
             Checkout</h1>
+        @if(productsCount.length === 0){
+        <p class="text-xl text-center text-gray-500 font-light">Add something to your cart!</p>
+        }
         @if(!loading){
         @for(product of productsCount; track $index){
         <app-cart-card [product]="product" (emitId)="openDetails($event)"></app-cart-card>

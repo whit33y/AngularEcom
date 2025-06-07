@@ -3,7 +3,7 @@
     <app-navbar (emitCart)="navigateTo('/cart')" (emitAuth)="handleAuth($event)" (emitHome)="navigateTo('/')"
         [cartCount]="cartCount()" [isLoggedIn]="isLoggedIn()"></app-navbar>
     }
-    <main class="flex-grow">
+    <main class="flex-grow bg-white text-black dark:bg-gray-300 dark:text-white">
         <router-outlet></router-outlet>
         <app-popup></app-popup>
     </main>
