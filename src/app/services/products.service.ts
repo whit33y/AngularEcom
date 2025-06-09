@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { SupabaseService } from './supabase/supabase.service';
 import { Product } from './interfaces/products.interface';
@@ -7,7 +7,7 @@ import { Product } from './interfaces/products.interface';
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(private supabase: SupabaseService) {}
+  private supabase = inject(SupabaseService);
 
   getProducts(): Observable<Product[]> {
     return from(

@@ -1,6 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase/supabase.service';
 import { AuthChangeEvent, Session } from '@supabase/supabase-js';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +46,37 @@ export class AuthService {
     return error;
   }
 
+  async getUserEmail(): Promise<string | undefined | null> {
+    const { data, error } = await this.supabase.client.auth.getUser();
+    if (error || !data.user) {
+      return null;
+    }
+    return data.user.email;
+  }
+
+  isAdmin(email: string): Observable<Admin> {
+    return from(
+      this.supabase.client
+        .from('admins')
+        .select('*')
+        .eq('email', email)
+        .maybeSingle()
+        .then(({ data, error }) => {
+          if (error) {
+            console.error('Error while searching for admin:', error);
+            return null;
+          }
+          return data;
+        })
+    );
+  }
+
   getSession() {
     return this.supabase.client.auth.getSession();
   }
 }
+
+export type Admin = {
+  id: number;
+  email: string;
+};

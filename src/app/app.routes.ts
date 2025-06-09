@@ -7,6 +7,8 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { CartComponent } from './pages/cart/cart.component';
 import { SuccessComponent } from './pages/success/success.component';
 import { CancelComponent } from './pages/cancel/cancel.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -42,6 +44,12 @@ export const routes: Routes = [
   {
     path: 'cancel',
     component: CancelComponent,
+    data: { showNavbar: true },
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [adminGuard],
     data: { showNavbar: true },
   },
   {

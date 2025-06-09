@@ -11,6 +11,8 @@ import { PaginationComponent } from '../../components/elements/pagination/pagina
 import { CommonModule } from '@angular/common';
 import { CategoryDropdownComponent } from '../../components/elements/category-dropdown/category-dropdown.component';
 import { SortDropdownComponent } from '../../components/elements/sort-dropdown/sort-dropdown.component';
+import { StripeService } from '../../services/stripe/stripe.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -32,6 +34,7 @@ export class ProductsComponent {
   private popupService = inject(PopupService);
   private cartService = inject(CartService);
   private router = inject(Router);
+  // private stripe = inject(StripeService);
 
   skeletonArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   products: Product[] | null = [];
@@ -176,4 +179,22 @@ export class ProductsComponent {
     this.currentPage = 1;
     this.updateShownProducts();
   }
+
+  // addToStripe() {
+  //   this.stripe
+  //     .createProduct({
+  //       name: 'product',
+  //       description: 'xd',
+  //       amount: 20000,
+  //       currency: 'USD',
+  //     })
+  //     .subscribe({
+  //       next: (response) => {
+  //         console.log(response);
+  //       },
+  //       error: (error) => {
+  //         console.error(error);
+  //       },
+  //     });
+  // }
 }

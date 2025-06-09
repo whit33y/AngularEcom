@@ -28,19 +28,3 @@ export class PaymentService {
     });
   }
 }
-
-// constructor(private paymentService: PaymentService) {}
-
-// startPayment() {
-//   const priceId = 'price_...'; // Podaj właściwe priceId
-//   this.paymentService.createCheckoutSession(priceId).subscribe({
-//     next: (res) => {
-//       if(res.url) {
-//         window.location.href = res.url; // przekierowanie do Stripe Checkout
-//       } else {
-//         console.error('Brak URL do płatności w odpowiedzi');
-//       }
-//     },
-//     error: (err) => console.error('Błąd podczas tworzenia sesji:', err)
-//   });
-// }
