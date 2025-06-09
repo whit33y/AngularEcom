@@ -2,6 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase/supabase.service';
 import { AuthChangeEvent, Session } from '@supabase/supabase-js';
 import { from, Observable } from 'rxjs';
+import { Admin } from './interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -75,8 +76,3 @@ export class AuthService {
     return this.supabase.client.auth.getSession();
   }
 }
-
-export type Admin = {
-  id: number;
-  email: string;
-};
