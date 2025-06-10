@@ -1,1 +1,23 @@
-<p>admin works!</p>
+<div>
+    <div class="flex justify-center mt-2">
+        <div class="inline-flex rounded-md shadow-xs" role="group">
+            <button type="button" (click)="changeRoute('users')"
+                class="px-4 py-2 text-sm font-medium border border-slate-500 rounded-s-lg hover:cursor-pointer"
+                [ngClass]="selectedRoute === 'users' ? 'bg-slate-400' : 'bg-slate-600'">
+                Users
+            </button>
+            <button type="button" (click)="changeRoute('products')"
+                class="px-4 py-2 text-sm font-medium border border-slate-500 rounded-e-lg hover:cursor-pointer"
+                [ngClass]="selectedRoute === 'products' ? 'bg-slate-400' : 'bg-slate-600'">
+                Products
+            </button>
+        </div>
+    </div>
+    <div>
+        @if(selectedRoute === 'users'){
+        <app-admin-users></app-admin-users>
+        }@else if(selectedRoute === 'products'){
+        <app-admin-products></app-admin-products>
+        }
+    </div>
+</div>
