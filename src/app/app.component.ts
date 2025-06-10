@@ -9,7 +9,7 @@ import { PopupComponent } from './components/shared/popup/popup.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CartService } from './services/cart.service';
 import { AuthService } from './services/auth.service';
-import { filter } from 'rxjs';
+import { filter, firstValueFrom } from 'rxjs';
 import { FooterComponent } from './components/shared/footer/footer.component';
 
 @Component({
@@ -26,6 +26,7 @@ export class AppComponent {
   showNavbar = signal(false);
   title = 'Sport products';
 
+  isAdmin = false;
   cartCount = computed(() => this.cartService.cartCount());
   isLoggedIn = computed(() => this.authService.sessionStatus());
 
@@ -40,6 +41,15 @@ export class AppComponent {
         const currentRoute = this.getCurrentRoute(this.router.routerState.root);
         this.showNavbar.set(currentRoute.snapshot.data['showNavbar']);
       });
+  }
+
+  async ngOnInit() {
+    const email = await this.authService.getUserEmail();
+    const admin = await firstValueFrom(this.authService.isAdmin(email!));
+    console.log(admin);
+    if (admin !== null) {
+      this.isAdmin = true;
+    }
   }
 
   private getCurrentRoute(route: ActivatedRoute): ActivatedRoute {

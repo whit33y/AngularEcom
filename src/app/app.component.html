@@ -1,7 +1,8 @@
 <div class="min-h-screen flex flex-col">
     @if(showNavbar()){
     <app-navbar (emitCart)="navigateTo('/cart')" (emitAuth)="handleAuth($event)" (emitHome)="navigateTo('/')"
-        [cartCount]="cartCount()" [isLoggedIn]="isLoggedIn()"></app-navbar>
+        (emitAdmin)="navigateTo('/admin')" [cartCount]="cartCount()" [isLoggedIn]="isLoggedIn()"
+        [isAdmin]="isAdmin"></app-navbar>
     }
     <main class="flex-grow bg-white text-black dark:bg-gray-300 dark:text-white">
         <router-outlet></router-outlet>
