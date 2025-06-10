@@ -55,6 +55,20 @@ export class AuthService {
     return data.user.email;
   }
 
+  getUsers(): Observable<Admin[]> {
+    return from(
+      this.supabase.client
+        .from('admins')
+        .select('*')
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(error.message);
+          }
+          return data;
+        })
+    );
+  }
+
   isAdmin(email: string): Observable<Admin> {
     return from(
       this.supabase.client

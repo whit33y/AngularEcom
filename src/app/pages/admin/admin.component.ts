@@ -15,6 +15,5 @@ export class AdminComponent {
 
   changeRoute(route: string) {
     this.selectedRoute = route;
-    console.log(this.selectedRoute);
   }
 }
