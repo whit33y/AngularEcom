@@ -21,7 +21,7 @@
             <td class="px-6 py-4">
                 {{admin.email}}
             </td>
-            <td class="px-6 py-4 flex hover:underline hover:cursor-pointer">
+            <td class="px-6 py-4 flex hover:underline hover:cursor-pointer" (click)="emitMail.emit(admin.email)">
                 Delete
                 <button class="font-medium text-white "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 24 24" fill="currentColor"

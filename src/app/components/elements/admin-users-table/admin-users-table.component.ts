@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Admin } from '../../../services/interfaces/auth.interface';
 
 @Component({
@@ -10,4 +10,5 @@ import { Admin } from '../../../services/interfaces/auth.interface';
 })
 export class AdminUsersTableComponent {
   @Input() adminList?: Admin[];
+  @Output() emitMail = new EventEmitter<string>();
 }

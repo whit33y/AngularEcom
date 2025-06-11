@@ -1,8 +1,9 @@
 <div class="mx-2 md:mx-24 my-2">
     <h2 class="text-center text-xl text-gray-500">Manage admins</h2>
+    <app-admin-users-form (emitMail)="addAdmin($event)"></app-admin-users-form>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         @if(!loadingAdminList){
-        <app-admin-users-table [adminList]="adminList"></app-admin-users-table>
+        <app-admin-users-table [adminList]="adminList" (emitMail)="deleteAdmin($event)"></app-admin-users-table>
         }@else {
         <app-spinner></app-spinner>
         }

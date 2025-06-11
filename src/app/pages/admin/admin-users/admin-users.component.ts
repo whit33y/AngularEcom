@@ -4,11 +4,16 @@ import { Admin } from '../../../services/interfaces/auth.interface';
 import { AdminUsersTableComponent } from '../../../components/elements/admin-users-table/admin-users-table.component';
 import { SpinnerComponent } from '../../../components/elements/spinner/spinner.component';
 import { AdminService } from '../../../services/admin.service';
+import { AdminUsersFormComponent } from '../../../components/elements/admin-users-form/admin-users-form.component';
 
 @Component({
   selector: 'app-admin-users',
   standalone: true,
-  imports: [AdminUsersTableComponent, SpinnerComponent],
+  imports: [
+    AdminUsersTableComponent,
+    SpinnerComponent,
+    AdminUsersFormComponent,
+  ],
   templateUrl: './admin-users.component.html',
   styleUrl: './admin-users.component.css',
 })

@@ -1,0 +1,9 @@
+<div [formGroup]="adminForm" class="flex justify-center items-center">
+    <label for="email">New admin:</label>
+    <input type="email" formControlName="email"
+        class="p-1 m-1 border-1 w-60 rounded-md text-sm border-gray-500 placeholder-gray-600 focus:border-sky-500 focus:outline focus:outline-sky-500 bg-white text-black" />
+    <button class="font-medium text-white text-md rounded-sm px-4 py-1 bg-sky-500" [ngClass]="{
+    'bg-sky-500 text-white cursor-pointer': !(adminForm.invalid || adminForm.pristine),
+    'bg-sky-300 text-gray-500 cursor-not-allowed': adminForm.invalid || adminForm.pristine
+  }" (click)="emitMail.emit(adminForm.value.email!)" [disabled]="adminForm.invalid || adminForm.pristine">Add</button>
+</div>
