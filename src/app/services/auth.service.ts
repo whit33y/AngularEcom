@@ -8,15 +8,29 @@ import { Admin } from './interfaces/auth.interface';
   providedIn: 'root',
 })
 export class AuthService {
-  sessionStatus = signal(false);
   private supabase = inject(SupabaseService);
+
+  sessionStatus = signal(false);
+  adminStatus = signal(false);
   constructor() {
     this.supabase.client.auth.getSession().then(({ data }) => {
-      this.sessionStatus.set(!!data.session);
+      const session = data.session;
+      this.sessionStatus.set(!!session);
+      if (session?.user.email) {
+        this.checkAdminStatus(session.user.email);
+      } else {
+        this.adminStatus.set(false);
+      }
     });
+
     this.supabase.client.auth.onAuthStateChange(
       (event: AuthChangeEvent, session: Session | null) => {
         this.sessionStatus.set(!!session);
+        if (session?.user.email) {
+          this.checkAdminStatus(session.user.email);
+        } else {
+          this.adminStatus.set(false);
+        }
       }
     );
   }
@@ -88,5 +102,20 @@ export class AuthService {
 
   getSession() {
     return this.supabase.client.auth.getSession();
+  }
+
+  private checkAdminStatus(email: string) {
+    this.supabase.client
+      .from('admins')
+      .select('*')
+      .eq('email', email)
+      .maybeSingle()
+      .then(({ data, error }) => {
+        if (error || !data) {
+          this.adminStatus.set(false);
+        } else {
+          this.adminStatus.set(true);
+        }
+      });
   }
 }

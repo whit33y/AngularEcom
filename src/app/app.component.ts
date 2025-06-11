@@ -26,10 +26,9 @@ export class AppComponent {
   showNavbar = signal(false);
   title = 'Sport products';
 
-  isAdmin = false;
+  isAdmin = computed(() => this.authService.adminStatus());
   cartCount = computed(() => this.cartService.cartCount());
   isLoggedIn = computed(() => this.authService.sessionStatus());
-
   constructor() {
     this.router.events
       .pipe(
@@ -43,14 +42,7 @@ export class AppComponent {
       });
   }
 
-  async ngOnInit() {
-    const email = await this.authService.getUserEmail();
-    const admin = await firstValueFrom(this.authService.isAdmin(email!));
-    console.log(admin);
-    if (admin !== null) {
-      this.isAdmin = true;
-    }
-  }
+  async ngOnInit() {}
 
   private getCurrentRoute(route: ActivatedRoute): ActivatedRoute {
     while (route.firstChild) {

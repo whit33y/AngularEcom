@@ -3,6 +3,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Admin } from '../../../services/interfaces/auth.interface';
 import { AdminUsersTableComponent } from '../../../components/elements/admin-users-table/admin-users-table.component';
 import { SpinnerComponent } from '../../../components/elements/spinner/spinner.component';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -13,6 +14,7 @@ import { SpinnerComponent } from '../../../components/elements/spinner/spinner.c
 })
 export class AdminUsersComponent {
   private authService = inject(AuthService);
+  private adminService = inject(AdminService);
 
   loadingAdminList = false;
   adminList: Admin[] = [];
@@ -31,6 +33,34 @@ export class AdminUsersComponent {
       },
       complete: () => {
         this.loadingAdminList = false;
+      },
+    });
+  }
+
+  addAdmin(email: string) {
+    this.adminService.addAdmin(email).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        this.getAdminList();
+      },
+    });
+  }
+
+  deleteAdmin(email: string) {
+    this.adminService.deleteAdmin(email).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        this.getAdminList();
       },
     });
   }
