@@ -179,22 +179,4 @@ export class ProductsComponent {
     this.currentPage = 1;
     this.updateShownProducts();
   }
-
-  // addToStripe() {
-  //   this.stripe
-  //     .createProduct({
-  //       name: 'product',
-  //       description: 'xd',
-  //       amount: 20000,
-  //       currency: 'USD',
-  //     })
-  //     .subscribe({
-  //       next: (response) => {
-  //         console.log(response);
-  //       },
-  //       error: (error) => {
-  //         console.error(error);
-  //       },
-  //     });
-  // }
 }

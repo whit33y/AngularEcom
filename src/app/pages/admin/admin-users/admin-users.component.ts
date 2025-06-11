@@ -43,29 +43,30 @@ export class AdminUsersComponent {
   }
 
   addAdmin(email: string) {
+    this.loadingAdminList = true;
     this.adminService.addAdmin(email).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
+      next: (data) => {},
       error: (err) => {
         console.error(err);
       },
       complete: () => {
         this.getAdminList();
+        this.loadingAdminList = false;
       },
     });
   }
 
   deleteAdmin(email: string) {
+    this.loadingAdminList = true;
+
     this.adminService.deleteAdmin(email).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
+      next: (data) => {},
       error: (err) => {
         console.error(err);
       },
       complete: () => {
         this.getAdminList();
+        this.loadingAdminList = false;
       },
     });
   }

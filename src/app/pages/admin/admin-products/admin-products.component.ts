@@ -5,8 +5,24 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './admin-products.component.html',
-  styleUrl: './admin-products.component.css'
+  styleUrl: './admin-products.component.css',
 })
 export class AdminProductsComponent {
-
+  // addToStripe() {
+  //   this.stripe
+  //     .createProduct({
+  //       name: 'product',
+  //       description: 'xd',
+  //       amount: 20000,
+  //       currency: 'USD',
+  //     })
+  //     .subscribe({
+  //       next: (response) => {
+  //         console.log(response);
+  //       },
+  //       error: (error) => {
+  //         console.error(error);
+  //       },
+  //     });
+  // }
 }
