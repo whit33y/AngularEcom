@@ -38,15 +38,15 @@ export class CartComponent {
   getProduct(id: number) {
     this.loading = true;
     this.productService.getProduct(id).subscribe({
-      next: (response) => {
-        this.products.push(response);
-        this.productsSum += response.price;
-        const existing = this.productsCount.find((p) => p.id === response.id);
+      next: (data) => {
+        this.products.push(data);
+        this.productsSum += data.price;
+        const existing = this.productsCount.find((p) => p.id === data.id);
 
         if (existing) {
           existing.count += 1;
         } else {
-          this.productsCount.push({ ...response, count: 1 });
+          this.productsCount.push({ ...data, count: 1 });
         }
       },
       error: (err) => {

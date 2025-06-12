@@ -53,4 +53,46 @@ export class ProductsService {
         })
     );
   }
+
+  addProduct(
+    name: string,
+    description: string,
+    price: number,
+    image_urls: string,
+    category: string,
+    price_id: string
+  ): Observable<Product> {
+    return from(
+      this.supabase.client
+        .from('products')
+        .insert({ name, description, price, image_urls, category, price_id })
+        .select()
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(`Failed to add product:  ${error.message}`);
+          }
+          return data?.[0] ?? null;
+        })
+    );
+  }
+
+  addImage(file: File): Observable<string> {
+    const filePath = `${Date.now()}-${file.name}`;
+    const bucket = 'products';
+
+    return from(
+      this.supabase.client.storage
+        .from(bucket)
+        .upload(filePath, file)
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(error.message);
+          }
+          const imageUrl = this.supabase.client.storage
+            .from(bucket)
+            .getPublicUrl(filePath).data.publicUrl;
+          return imageUrl;
+        })
+    );
+  }
 }
