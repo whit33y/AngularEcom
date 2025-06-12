@@ -2,13 +2,13 @@
     <div class="flex justify-center mt-2">
         <div class="text-sm font-medium text-center flex justify-center text-gray-800 mb-2">
             <ul class="flex flex-wrap -mb-px">
-                <li class="me-2" (click)="changeRoute('users')">
+                <li class="me-2 w-22" (click)="changeRoute('users')">
                     <p class="inline-block px-4 pb-2 border-b-2 rounded-t-lg hover:cursor-pointer"
                         [ngClass]="selectedRoute === 'users' ? 'border-sky-300' : ' border-gray-800' "
                         (click)="selectedRoute = 'users'">
                         Users</p>
                 </li>
-                <li class="me-2" (click)="changeRoute('products')">
+                <li class="me-2 w-22" (click)="changeRoute('products')">
                     <p class="inline-block px-4 pb-2 border-b-2  rounded-t-lg hover:cursor-pointer"
                         [ngClass]="selectedRoute === 'products' ? 'border-sky-300' : 'border-gray-800' "
                         (click)="selectedRoute = 'products'">

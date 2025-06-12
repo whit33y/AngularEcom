@@ -54,6 +54,22 @@ export class ProductsService {
     );
   }
 
+  deleteProduct(id: number): Observable<Product | null> {
+    return from(
+      this.supabase.client
+        .from('products')
+        .delete()
+        .eq('id', id)
+        .select()
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(`Failed to delete product:  ${error.message}`);
+          }
+          return data?.[0] ?? null;
+        })
+    );
+  }
+
   addProduct(
     name: string,
     description: string,
@@ -78,20 +94,33 @@ export class ProductsService {
 
   addImage(file: File): Observable<string> {
     const filePath = `${Date.now()}-${file.name}`;
-    const bucket = 'products';
 
     return from(
       this.supabase.client.storage
-        .from(bucket)
+        .from('products')
         .upload(filePath, file)
         .then(({ data, error }) => {
           if (error) {
             throw new Error(error.message);
           }
           const imageUrl = this.supabase.client.storage
-            .from(bucket)
+            .from('products')
             .getPublicUrl(filePath).data.publicUrl;
           return imageUrl;
+        })
+    );
+  }
+
+  deleteImage(filePath: string): Observable<any> {
+    return from(
+      this.supabase.client.storage
+        .from('products')
+        .remove([filePath])
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(error.message);
+          }
+          return data;
         })
     );
   }
