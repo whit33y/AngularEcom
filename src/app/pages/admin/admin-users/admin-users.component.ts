@@ -20,10 +20,10 @@ import { AdminUsersFormComponent } from '../../../components/elements/admin-user
 export class AdminUsersComponent {
   private authService = inject(AuthService);
   private adminService = inject(AdminService);
-
   loadingAdminList = false;
   adminList: Admin[] = [];
   ngOnInit() {
+    this.getUserEmail();
     this.getAdminList();
   }
 
@@ -43,31 +43,44 @@ export class AdminUsersComponent {
   }
 
   addAdmin(email: string) {
-    this.loadingAdminList = true;
     this.adminService.addAdmin(email).subscribe({
-      next: (data) => {},
+      next: (data) => {
+        this.adminList.push(data!);
+      },
       error: (err) => {
         console.error(err);
       },
-      complete: () => {
-        this.getAdminList();
-        this.loadingAdminList = false;
-      },
+      complete: () => {},
     });
   }
 
   deleteAdmin(email: string) {
     this.loadingAdminList = true;
-
     this.adminService.deleteAdmin(email).subscribe({
       next: (data) => {},
       error: (err) => {
         console.error(err);
       },
       complete: () => {
-        this.getAdminList();
-        this.loadingAdminList = false;
+        if (this.currentEmail === email) {
+          window.location.reload();
+        } else {
+          this.getAdminList();
+          this.loadingAdminList = false;
+        }
       },
     });
+  }
+
+  currentEmail: string | null | undefined = '';
+  getUserEmail() {
+    this.authService
+      .getUserEmail()
+      .then((data) => {
+        this.currentEmail = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
