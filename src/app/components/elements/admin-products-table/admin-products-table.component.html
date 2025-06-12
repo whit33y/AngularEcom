@@ -1,19 +1,19 @@
 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
-            <th scope="col" class="pl-2 py-3">
+            <th scope="col" class="pl-2 py-4">
                 ID
             </th>
-            <th scope="col" class="py-3">
+            <th scope="col" class="py-4">
                 Name
             </th>
-            <th scope="col" class="py-3">
+            <th scope="col" class="py-4">
                 Price
             </th>
-            <th scope="col" class="py-3">
+            <th scope="col" class="py-4">
                 Category
             </th>
-            <th scope="col" class="py-3">
+            <th scope="col" class="py-4">
                 Action
             </th>
         </tr>
@@ -21,29 +21,45 @@
     <tbody>
         @for(product of products; track product.id){
         <tr class="odd:bg-slate-500 even:bg-slate-400 text-white">
-            <th scope="row" class="pl-2 py-4 font-medium  whitespace-nowrap dark:text-white">
+            <th scope="row" class="pl-2 py-2 font-medium  whitespace-nowrap dark:text-white">
                 {{product.id}}
             </th>
-            <td class="py-4">
-                {{product.name}}
+            <td class="py-2">
+                <p class="md:hidden block">{{ product.name | slice:0:15 }}...</p>
+                <p class="hidden md:block">{{ product.name }}</p>
+
             </td>
-            <td class="py-4">
+            <td class="py-2">
                 {{product.price}}
             </td>
-            <td class="py-4">
+            <td class="py-2">
                 {{product.category}}
             </td>
-            <td class="py-4 flex hover:underline hover:cursor-pointer">
-                Delete
-                <button class="font-medium text-white "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24 24" fill="currentColor"
-                        class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path
-                            d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-                        <path
-                            d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
-                    </svg></button>
+            <td class="py-2 flex">
+                <div class="flex items-center hover:underline hover:cursor-pointer px-2">
+                    Edit
+                    <button class="font-medium text-white "><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                            <path d="M16 5l3 3" />
+                        </svg></button>
+                </div>
+                <div class="flex items-center hover:underline hover:cursor-pointer px-2">
+                    Delete
+                    <button class="font-medium text-white "><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                            height="20" viewBox="0 0 24 24" fill="currentColor"
+                            class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+                            <path
+                                d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+                        </svg></button>
+                </div>
             </td>
         </tr>
         }
