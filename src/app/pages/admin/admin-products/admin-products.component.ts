@@ -2,11 +2,18 @@ import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../services/interfaces/products.interface';
 import { StripeService } from '../../../services/stripe/stripe.service';
+import { CommonModule } from '@angular/common';
+import { AdminProductsFormComponent } from '../../../components/elements/admin-products-form/admin-products-form.component';
+import { AdminProductsTableComponent } from '../../../components/elements/admin-products-table/admin-products-table.component';
 
 @Component({
   selector: 'app-admin-products',
   standalone: true,
-  imports: [],
+  imports: [
+    CommonModule,
+    AdminProductsFormComponent,
+    AdminProductsTableComponent,
+  ],
   templateUrl: './admin-products.component.html',
   styleUrl: './admin-products.component.css',
 })
@@ -16,6 +23,9 @@ export class AdminProductsComponent {
   constructor() {
     this.loadProducts();
   }
+
+  showForm = false;
+  selectedOption = 'list';
 
   loadingProducts = false;
   products: Product[] = [];
