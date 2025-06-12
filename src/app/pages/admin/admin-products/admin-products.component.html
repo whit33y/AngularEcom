@@ -18,9 +18,11 @@
     </div>
     <div class="relative overflow-x-auto sm:rounded-lg">
         @if(selectedOption === 'list'){
-        <app-admin-products-table [products]="products"></app-admin-products-table>
+        <app-admin-products-table [products]="showProducts"></app-admin-products-table>
         }@else {
         <app-admin-products-form></app-admin-products-form>
         }
     </div>
+    <app-pagination [elementsCount]="products!.length" [currentPage]="currentPage" [maxPage]="maxPages"
+        [startIndex]="startIndex" [endIndex]="endIndex" (changePage)="changePage($event)"></app-pagination>
 </div>

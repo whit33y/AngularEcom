@@ -15,7 +15,7 @@
         <app-cart-card [product]="product" (emitId)="openDetails($event)"></app-cart-card>
         }
         }@else {
-        @for(element of [1,2,3,4,5]; track $index){
+        @for(element of [1,2,3]; track $index){
         <app-cart-card-skeleton></app-cart-card-skeleton>
         }
         }
