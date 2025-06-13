@@ -10,5 +10,5 @@ import { SlicePipe } from '@angular/common';
   styleUrl: './admin-products-table.component.css',
 })
 export class AdminProductsTableComponent {
-  @Input() products?: Product[];
+  @Input() products?: Product[] | null;
 }

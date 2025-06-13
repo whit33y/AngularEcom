@@ -1,7 +1,7 @@
 <div class="relative flex flex-col my-4 bg-white shadow-sm border border-slate-200 rounded-lg w-full max-w-sm h-full hover:cursor-pointer dark:bg-slate-600 dark:text-white dark:border-slate-700"
     (click)="emitDetailsId.emit(product_id!)">
     <div class="relative p-2.5 aspect-[4/3] overflow-hidden rounded-xl bg-clip-border">
-        <img [src]="image_url" alt="card-image" class="w-full h-full object-cover rounded-md" />
+        <img [alt]="name + 'image'" [src]="image_url" alt="card-image" class="w-full h-full object-cover rounded-md" />
     </div>
     <div class="p-4 flex flex-col justify-between flex-1">
         <div class="mb-2 flex items-center justify-between">
