@@ -11,6 +11,8 @@ export class StripeService {
   private stripePromise = loadStripe(environment.stripePublishableKey);
   private readonly API =
     'https://eqoubrqeyrknukljugim.supabase.co/functions/v1/stripe-products';
+  private readonly API_DELETE_PRODUCT =
+    'https://eqoubrqeyrknukljugim.supabase.co/functions/v1/stripe-delete-product';
 
   async getStripe(): Promise<Stripe | null> {
     return await this.stripePromise;
@@ -24,5 +26,9 @@ export class StripeService {
     recurring?: { interval: 'month' | 'year'; interval_count?: number };
   }) {
     return this.http.post(this.API, data);
+  }
+
+  deleteProduct(productId: string) {
+    return this.http.post(this.API_DELETE_PRODUCT, { productId });
   }
 }
