@@ -144,4 +144,8 @@ export class AdminProductsComponent {
     this.startIndex = startIndex + 1;
     this.showProducts = this.products.slice(startIndex, endIndex);
   }
+
+  getForm(event: any) {
+    console.log(event);
+  }
 }

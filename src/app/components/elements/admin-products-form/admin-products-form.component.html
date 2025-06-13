@@ -1,33 +1,35 @@
-<form class="max-w-lg mx-auto">
+<form class="max-w-lg mx-auto" [formGroup]="productForm">
     <div class="mb-2">
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-        <input type="text" id="name"
+        <input type="text" id="name" formControlName="name"
             class="block w-full p-2 text-white border border-gray-300 rounded-lg bg-gray-700 text-xs focus:ring-blue-500 focus:border-blue-500">
     </div>
     <div class="mb-2">
         <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-        <textarea id="description" rows="4"
+        <textarea id="description" rows="4" formControlName="description"
             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Description..."></textarea>
     </div>
     <div>
         <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
-        <input type="number" id="price"
+        <input type="number" id="price" formControlName="price"
             class="block w-full p-2 text-white border border-gray-300 rounded-lg bg-gray-700 text-xs focus:ring-blue-500 focus:border-blue-500">
     </div>
     <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900" for="image">Add or change photo</label>
-        <input
+        <input formControlName="image" (change)="onFileSelected($event)"
             class="block w-full p-2.5 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-700 focus:ring-blue-500 focus:border-blue-500"
             id="image" type="file">
         <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Select category</label>
     </div>
-    <select id="categories"
+    <select id="categories" formControlName="category"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option selected>Choose category</option>
+        <option value="cat">Category</option>
     </select>
     <button class="font-medium text-white mt-2 text-md rounded-sm px-4 py-1 bg-sky-500" [ngClass]="{
     'bg-sky-500 text-white cursor-pointer': !(productForm.invalid || productForm.pristine),
     'bg-sky-300 text-gray-500 cursor-not-allowed': productForm.invalid || productForm.pristine
-  }" [disabled]="productForm.invalid || productForm.pristine">Add product</button>
+  }" [disabled]="productForm.invalid || productForm.pristine" (click)="emitForm.emit(productForm.value)">Add
+        product</button>
 </form>
