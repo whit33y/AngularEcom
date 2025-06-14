@@ -1,4 +1,4 @@
-<form class="max-w-lg mx-auto" [formGroup]="productForm">
+<form class="max-w-lg mx-auto" [formGroup]="form">
     <div class="mb-2">
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
         <input type="text" id="name" formControlName="name"
@@ -28,8 +28,8 @@
         <option value="cat">Category</option>
     </select>
     <button class="font-medium text-white mt-2 text-md rounded-sm px-4 py-1 bg-sky-500" [ngClass]="{
-    'bg-sky-500 text-white cursor-pointer': !(productForm.invalid || productForm.pristine),
-    'bg-sky-300 text-gray-500 cursor-not-allowed': productForm.invalid || productForm.pristine
-  }" [disabled]="productForm.invalid || productForm.pristine" (click)="emitForm.emit(productForm.value)">Add
+    'bg-sky-500 text-white cursor-pointer': !(form.invalid || form.pristine),
+    'bg-sky-300 text-gray-500 cursor-not-allowed': form.invalid || form.pristine
+  }" [disabled]="form.invalid || form.pristine" (click)="formSubmit.emit(form)">Add
         product</button>
 </form>

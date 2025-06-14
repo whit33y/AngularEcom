@@ -7,6 +7,7 @@ import { AdminProductsFormComponent } from '../../../components/elements/admin-p
 import { AdminProductsTableComponent } from '../../../components/elements/admin-products-table/admin-products-table.component';
 import { PaginationComponent } from '../../../components/elements/pagination/pagination.component';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-products',
@@ -147,5 +148,42 @@ export class AdminProductsComponent {
 
   getForm(event: any) {
     console.log(event);
+  }
+
+  productForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    price: new FormControl(0, Validators.required),
+    category: new FormControl('', Validators.required),
+    image: new FormControl<File | null>(null, Validators.required),
+  });
+
+  onFileSelected(file: File) {
+    this.productForm.patchValue({ image: file });
+    this.productForm.get('image')?.updateValueAndValidity();
+  }
+
+  onSubmit(event: any) {
+    console.log(event);
+    if (this.productForm.invalid) return;
+
+    const formData = new FormData();
+    formData.append('name', this.productForm.get('name')?.value || '');
+    formData.append(
+      'description',
+      this.productForm.get('description')?.value || ''
+    );
+    formData.append(
+      'price',
+      this.productForm.get('price')?.value?.toString() || '0'
+    );
+    formData.append('category', this.productForm.get('category')?.value || '');
+
+    const image = this.productForm.get('image')?.value;
+    if (image instanceof File) {
+      formData.append('image', image);
+    }
+
+    console.log('FormData to send:', formData);
   }
 }
