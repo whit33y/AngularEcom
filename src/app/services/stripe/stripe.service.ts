@@ -26,7 +26,13 @@ export class StripeService {
     currency?: string;
     recurring?: { interval: 'month' | 'year'; interval_count?: number };
   }): Observable<any> {
-    return this.http.post(this.API, data);
+    const transformedData = {
+      ...data,
+      amount: Math.round(data.amount * 100),
+      currency: data.currency || 'usd',
+    };
+
+    return this.http.post(this.API, transformedData);
   }
 
   deleteProduct(productId: string) {

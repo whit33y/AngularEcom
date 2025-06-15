@@ -20,7 +20,7 @@
         @if(selectedOption === 'list'){
         <app-admin-products-table [products]="showProducts"></app-admin-products-table>
         }@else {
-        <app-admin-products-form [form]="productForm" (fileSelected)="onFileSelected($event)"
+        <app-admin-products-form [form]="productForm" (fileSelected)="onFileSelected($event)" [categories]="categories"
             (formSubmit)="onSubmit($event)"></app-admin-products-form>
         }
     </div>

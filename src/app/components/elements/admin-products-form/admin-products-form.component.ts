@@ -16,6 +16,7 @@ import {
 })
 export class AdminProductsFormComponent {
   @Input() form!: FormGroup;
+  @Input() categories?: string[];
   @Output() formSubmit = new EventEmitter<FormGroup>();
   @Output() fileSelected = new EventEmitter<File>();
 

@@ -173,7 +173,7 @@ export class AdminProductsComponent {
   productForm = new FormGroup({
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    price: new FormControl(0, Validators.required),
+    price: new FormControl(1, Validators.required),
     category: new FormControl('', Validators.required),
     image: new FormControl<File | null>(null, Validators.required),
   });
