@@ -17,7 +17,7 @@
     </div>
     <div class="mb-2">
         <label class="block mb-2 text-sm font-medium text-gray-900" for="image">Add or change photo</label>
-        <input formControlName="image" (change)="onFileSelected($event)"
+        <input (change)="onFileSelected($event)"
             class="block w-full p-2.5 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-700 focus:ring-blue-500 focus:border-blue-500"
             id="image" type="file">
         <label for="categories" class="block mb-2 text-sm font-medium text-gray-900">Select category</label>

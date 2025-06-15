@@ -146,10 +146,6 @@ export class AdminProductsComponent {
     this.showProducts = this.products.slice(startIndex, endIndex);
   }
 
-  getForm(event: any) {
-    console.log(event);
-  }
-
   productForm = new FormGroup({
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
@@ -163,27 +159,17 @@ export class AdminProductsComponent {
     this.productForm.get('image')?.updateValueAndValidity();
   }
 
-  onSubmit(event: any) {
-    console.log(event);
-    if (this.productForm.invalid) return;
+  onSubmit(event: FormGroup) {
+    this.productForm.setValue({
+      name: event.value.name || '',
+      description: event.value.description || '',
+      price: event.value.price || 0,
+      category: event.value.category || '',
+      image: event.value.image || '',
+    });
 
-    const formData = new FormData();
-    formData.append('name', this.productForm.get('name')?.value || '');
-    formData.append(
-      'description',
-      this.productForm.get('description')?.value || ''
-    );
-    formData.append(
-      'price',
-      this.productForm.get('price')?.value?.toString() || '0'
-    );
-    formData.append('category', this.productForm.get('category')?.value || '');
-
-    const image = this.productForm.get('image')?.value;
-    if (image instanceof File) {
-      formData.append('image', image);
+    if (this.productForm.valid) {
+      console.log('productForm to send:', this.productForm);
     }
-
-    console.log('FormData to send:', formData);
   }
 }
