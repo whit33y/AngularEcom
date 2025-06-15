@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
 import { AdminProductsFormComponent } from '../../../components/elements/admin-products-form/admin-products-form.component';
 import { AdminProductsTableComponent } from '../../../components/elements/admin-products-table/admin-products-table.component';
 import { PaginationComponent } from '../../../components/elements/pagination/pagination.component';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PopupService } from '../../../services/popup.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -24,7 +24,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AdminProductsComponent {
   private productsService = inject(ProductsService);
   private stripeService = inject(StripeService);
-  private router = inject(Router);
+  private popupService = inject(PopupService);
   constructor() {
     this.getProducts();
   }
@@ -53,10 +53,18 @@ export class AdminProductsComponent {
         error: (error) => {
           console.error(error);
         },
-        complete: () => {},
+        complete: () => {
+          this.getProducts();
+          this.selectedOption = 'list';
+          this.popupService.openPopup(
+            'SUCCESS',
+            'Successfully added new product.'
+          );
+        },
       });
   }
 
+  priceId: any = '';
   addToStripe(name: string, description: string, amount: number) {
     this.stripeService
       .createProduct({
@@ -67,24 +75,40 @@ export class AdminProductsComponent {
       })
       .subscribe({
         next: (data) => {
-          console.log(data);
+          this.priceId = data.price.id;
         },
         error: (error) => {
           console.error(error);
         },
-        complete: () => {},
+        complete: () => {
+          this.addProduct(
+            this.productForm.value.name!,
+            this.productForm.value.description!,
+            this.productForm.value.price!,
+            this.imageLink,
+            this.productForm.value.category!,
+            this.priceId!
+          );
+        },
       });
   }
 
+  imageLink: string = '';
   addImage(file: File) {
     this.productsService.addImage(file).subscribe({
       next: (data) => {
-        console.log(data);
+        this.imageLink = data;
       },
       error: (error) => {
         console.error(error);
       },
-      complete: () => {},
+      complete: () => {
+        this.addToStripe(
+          this.productForm.value.name!,
+          this.productForm.value.description!,
+          this.productForm.value.price!
+        );
+      },
     });
   }
 
@@ -170,6 +194,7 @@ export class AdminProductsComponent {
 
     if (this.productForm.valid) {
       console.log('productForm to send:', this.productForm);
+      this.addImage(this.productForm.value.image!);
     }
   }
 }
