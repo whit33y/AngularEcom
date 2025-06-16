@@ -62,6 +62,7 @@ export class AdminProductsComponent {
             'SUCCESS',
             'Successfully added new product.'
           );
+          this.productForm.reset();
         },
       });
   }
@@ -181,9 +182,12 @@ export class AdminProductsComponent {
   }
 
   productForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    price: new FormControl(1, Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.minLength(20),
+    ]),
+    price: new FormControl(1, [Validators.required, Validators.min(1)]),
     category: new FormControl('', Validators.required),
     image: new FormControl<File | null>(null, Validators.required),
   });
@@ -203,7 +207,6 @@ export class AdminProductsComponent {
     });
 
     if (this.productForm.valid) {
-      console.log('productForm to send:', this.productForm);
       this.addImage(this.productForm.value.image!);
     }
   }
