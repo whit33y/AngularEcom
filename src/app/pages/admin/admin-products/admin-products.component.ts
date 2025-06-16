@@ -252,9 +252,7 @@ export class AdminProductsComponent {
 
   deleteImageFromSupabase(image_url: string) {
     this.productsService.deleteImage(image_url).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
+      next: (data) => {},
       error: (err) => {
         console.error(err);
       },
@@ -270,9 +268,7 @@ export class AdminProductsComponent {
 
   deleteProductFromSupabase(id: number) {
     this.productsService.deleteProduct(id).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
+      next: (data) => {},
       error: (err) => {
         console.error(err);
       },

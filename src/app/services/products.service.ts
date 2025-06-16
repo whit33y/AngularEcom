@@ -106,7 +106,6 @@ export class ProductsService {
 
   deleteImage(filePath: string): Observable<any> {
     const path = filePath.split('/products/')[1];
-    console.log('Deleting path:', path);
     return from(
       this.supabase.client.storage
         .from('products')
