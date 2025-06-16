@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Category } from '../../../services/category.service';
 
 @Component({
   selector: 'app-admin-products-form',
@@ -16,7 +12,7 @@ import {
 })
 export class AdminProductsFormComponent {
   @Input() form!: FormGroup;
-  @Input() categories?: string[];
+  @Input() categories?: Category[];
   @Output() formSubmit = new EventEmitter<FormGroup>();
   @Output() fileSelected = new EventEmitter<File>();
 

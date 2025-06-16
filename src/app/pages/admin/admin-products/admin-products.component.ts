@@ -8,6 +8,7 @@ import { AdminProductsTableComponent } from '../../../components/elements/admin-
 import { PaginationComponent } from '../../../components/elements/pagination/pagination.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopupService } from '../../../services/popup.service';
+import { Category, CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -23,6 +24,7 @@ import { PopupService } from '../../../services/popup.service';
 })
 export class AdminProductsComponent {
   private productsService = inject(ProductsService);
+  private categoryService = inject(CategoryService);
   private stripeService = inject(StripeService);
   private popupService = inject(PopupService);
   constructor() {
@@ -34,7 +36,7 @@ export class AdminProductsComponent {
 
   loadingProducts = false;
   products: Product[] = [];
-  categories: string[] = [];
+  categories: Category[] = [];
 
   addProduct(
     name: string,
@@ -132,12 +134,20 @@ export class AdminProductsComponent {
       },
       complete: () => {
         this.loadingProducts = false;
-        this.products?.forEach((value) => {
-          if (!this.categories.includes(value.category)) {
-            this.categories.push(value.category);
-          }
-        });
+        this.getCategories();
       },
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {},
     });
   }
 

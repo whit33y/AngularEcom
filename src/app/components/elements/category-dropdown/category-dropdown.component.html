@@ -16,8 +16,8 @@
         <ul class="py-2 text-sm text-gray-200">
             @for(category of categories; track $index){
             <li>
-                <button (click)="emitCategory.emit(category); emitDropdown.emit(true)"
-                    class="block px-4 py-2 w-full text-start hover:bg-gray-600 hover:cursor-pointer">{{category}}</button>
+                <button (click)="emitCategory.emit(category.name); emitDropdown.emit(true)"
+                    class="block px-4 py-2 w-full text-start hover:bg-gray-600 hover:cursor-pointer">{{category.name}}</button>
             </li>
             }
         </ul>

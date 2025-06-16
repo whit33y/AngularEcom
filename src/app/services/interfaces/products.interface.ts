@@ -17,4 +17,3 @@ export type ProductCount = {
   count: number;
   price_id: string;
 };
-

@@ -11,8 +11,7 @@ import { PaginationComponent } from '../../components/elements/pagination/pagina
 import { CommonModule } from '@angular/common';
 import { CategoryDropdownComponent } from '../../components/elements/category-dropdown/category-dropdown.component';
 import { SortDropdownComponent } from '../../components/elements/sort-dropdown/sort-dropdown.component';
-import { StripeService } from '../../services/stripe/stripe.service';
-import { AuthService } from '../../services/auth.service';
+import { Category, CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-products',
@@ -31,20 +30,21 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProductsComponent {
   private productsService = inject(ProductsService);
+  private categoryService = inject(CategoryService);
   private popupService = inject(PopupService);
   private cartService = inject(CartService);
   private router = inject(Router);
-  // private stripe = inject(StripeService);
 
   skeletonArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   products: Product[] | null = [];
-  categories: string[] = [];
+  categories: Category[] = [];
   error: string = '';
   loadingProducts: boolean = false;
 
   constructor() {}
 
   ngOnInit() {
+    this.getCategories();
     this.getProducts();
   }
 
@@ -68,12 +68,19 @@ export class ProductsComponent {
       },
       complete: () => {
         this.loadingProducts = false;
-        this.products?.forEach((value) => {
-          if (!this.categories.includes(value.category)) {
-            this.categories.push(value.category);
-          }
-        });
       },
+    });
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {},
     });
   }
 
@@ -97,11 +104,6 @@ export class ProductsComponent {
       },
       complete: () => {
         this.loadingProducts = false;
-        this.products?.forEach((value) => {
-          if (!this.categories.includes(value.category)) {
-            this.categories.push(value.category);
-          }
-        });
       },
     });
   }

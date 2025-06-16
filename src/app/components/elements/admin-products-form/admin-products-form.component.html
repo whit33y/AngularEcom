@@ -27,7 +27,7 @@
         class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white">
         <option selected disabled>Choose category</option>
         @for(category of categories; track $index){
-        <option [value]="category">{{category}}</option>
+        <option [value]="category.name">{{category.name}}</option>
         }
     </select>
     <button class="font-medium text-white mt-2 text-md rounded-sm px-4 py-1 bg-sky-500" [ngClass]="{
