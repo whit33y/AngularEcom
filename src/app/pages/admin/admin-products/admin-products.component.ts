@@ -29,7 +29,7 @@ export class AdminProductsComponent {
   private popupService = inject(PopupService);
   constructor() {
     this.getProducts();
-    this.getStripeProducts();
+    // this.getStripeProducts();
   }
 
   showForm = false;
@@ -153,17 +153,17 @@ export class AdminProductsComponent {
     });
   }
 
-  stripeProducts = [];
-  getStripeProducts() {
-    this.stripeService.getProducts().subscribe({
-      next: (products) => {
-        console.log('Produkty ze Stripe:', products);
-      },
-      error: (err) => {
-        console.error('Błąd przy pobieraniu produktów:', err);
-      },
-    });
-  }
+  // stripeProducts = [];
+  // getStripeProducts() {
+  //   this.stripeService.getProducts().subscribe({
+  //     next: (products) => {
+  //       console.log('Produkty ze Stripe:', products);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading stripe products:', err);
+  //     },
+  //   });
+  // }
 
   getCategories() {
     this.categoryService.getCategories().subscribe({

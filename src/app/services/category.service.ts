@@ -36,6 +36,22 @@ export class CategoryService {
         })
     );
   }
+
+  deleteCateogry(id: number): Observable<Category | null> {
+    return from(
+      this.supabase.client
+        .from('categories')
+        .delete()
+        .eq('id', id)
+        .select()
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(`Failed to delete category:  ${error.message}`);
+          }
+          return data?.[0] ?? null;
+        })
+    );
+  }
 }
 
 export type Category = {
