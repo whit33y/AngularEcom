@@ -54,34 +54,27 @@ export class ProductsService {
     );
   }
 
-  deleteProduct(id: number): Observable<Product | null> {
-    return from(
-      this.supabase.client
-        .from('products')
-        .delete()
-        .eq('id', id)
-        .select()
-        .then(({ data, error }) => {
-          if (error) {
-            throw new Error(`Failed to delete product:  ${error.message}`);
-          }
-          return data?.[0] ?? null;
-        })
-    );
-  }
-
   addProduct(
     name: string,
     description: string,
     price: number,
     image_urls: string,
     category: string,
-    price_id: string
+    price_id: string,
+    stripe_id: string
   ): Observable<Product> {
     return from(
       this.supabase.client
         .from('products')
-        .insert({ name, description, price, image_urls, category, price_id })
+        .insert({
+          name,
+          description,
+          price,
+          image_urls,
+          category,
+          price_id,
+          stripe_id,
+        })
         .select()
         .then(({ data, error }) => {
           if (error) {
@@ -112,15 +105,33 @@ export class ProductsService {
   }
 
   deleteImage(filePath: string): Observable<any> {
+    const path = filePath.split('/products/')[1];
+    console.log('Deleting path:', path);
     return from(
       this.supabase.client.storage
         .from('products')
-        .remove([filePath])
+        .remove([path])
         .then(({ data, error }) => {
           if (error) {
             throw new Error(error.message);
           }
           return data;
+        })
+    );
+  }
+
+  deleteProduct(id: number): Observable<Product | null> {
+    return from(
+      this.supabase.client
+        .from('products')
+        .delete()
+        .eq('id', id)
+        .select()
+        .then(({ data, error }) => {
+          if (error) {
+            throw new Error(`Failed to delete product:  ${error.message}`);
+          }
+          return data?.[0] ?? null;
         })
     );
   }

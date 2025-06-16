@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../services/interfaces/products.interface';
 import { SlicePipe } from '@angular/common';
 
@@ -11,4 +11,5 @@ import { SlicePipe } from '@angular/common';
 })
 export class AdminProductsTableComponent {
   @Input() products?: Product[] | null;
+  @Output() emitDelete = new EventEmitter();
 }

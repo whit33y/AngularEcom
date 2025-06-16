@@ -6,6 +6,7 @@ export type Product = {
   price: number;
   category: string;
   price_id: string;
+  stripe_id: string;
 };
 export type ProductCount = {
   id: number;
@@ -16,4 +17,5 @@ export type ProductCount = {
   category: string;
   count: number;
   price_id: string;
+  stripe_id: string;
 };

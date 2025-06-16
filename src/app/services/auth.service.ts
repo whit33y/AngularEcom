@@ -12,10 +12,12 @@ export class AuthService {
 
   sessionStatus = signal(false);
   adminStatus = signal(false);
+  session = signal<Session | null>(null);
   constructor() {
     this.supabase.client.auth.getSession().then(({ data }) => {
       const session = data.session;
       this.sessionStatus.set(!!session);
+      this.session.set(session);
       if (session?.user.email) {
         this.checkAdminStatus(session.user.email);
       } else {

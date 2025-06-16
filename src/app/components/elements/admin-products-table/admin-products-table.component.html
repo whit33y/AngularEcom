@@ -36,7 +36,8 @@
                 {{product.category}}
             </td>
             <td class="py-2 flex">
-                <div class="flex items-center hover:underline hover:cursor-pointer px-2">
+                <div class="flex items-center hover:underline hover:cursor-pointer px-2"
+                    (click)="emitDelete.emit({stripe_id: product.stripe_id, image_url: product.image_urls, product_id: product.id})">
                     Delete
                     <button class="font-medium text-white "><svg xmlns="http://www.w3.org/2000/svg" width="20"
                             height="20" viewBox="0 0 24 24" fill="currentColor"

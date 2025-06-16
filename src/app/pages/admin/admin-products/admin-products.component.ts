@@ -29,6 +29,7 @@ export class AdminProductsComponent {
   private popupService = inject(PopupService);
   constructor() {
     this.getProducts();
+    this.getStripeProducts();
   }
 
   showForm = false;
@@ -44,10 +45,19 @@ export class AdminProductsComponent {
     price: number,
     image_urls: string,
     category: string,
-    price_id: string
+    price_id: string,
+    product_id: string
   ) {
     this.productsService
-      .addProduct(name, description, price, image_urls, category, price_id)
+      .addProduct(
+        name,
+        description,
+        price,
+        image_urls,
+        category,
+        price_id,
+        product_id
+      )
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -68,6 +78,7 @@ export class AdminProductsComponent {
   }
 
   priceId: any = '';
+  productId: any = '';
   addToStripe(name: string, description: string, amount: number) {
     this.stripeService
       .createProduct({
@@ -79,6 +90,7 @@ export class AdminProductsComponent {
       .subscribe({
         next: (data) => {
           this.priceId = data.price.id;
+          this.productId = data.product.id;
         },
         error: (error) => {
           console.error(error);
@@ -90,7 +102,8 @@ export class AdminProductsComponent {
             this.productForm.value.price!,
             this.imageLink,
             this.productForm.value.category!,
-            this.priceId!
+            this.priceId!,
+            this.productId!
           );
         },
       });
@@ -136,6 +149,18 @@ export class AdminProductsComponent {
       complete: () => {
         this.loadingProducts = false;
         this.getCategories();
+      },
+    });
+  }
+
+  stripeProducts = [];
+  getStripeProducts() {
+    this.stripeService.getProducts().subscribe({
+      next: (products) => {
+        console.log('Produkty ze Stripe:', products);
+      },
+      error: (err) => {
+        console.error('Błąd przy pobieraniu produktów:', err);
       },
     });
   }
@@ -210,4 +235,64 @@ export class AdminProductsComponent {
       this.addImage(this.productForm.value.image!);
     }
   }
+
+  // deleteProductFromStripe(product_id: string) {
+  //   this.stripeService.deleteProduct(product_id).subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //     },
+  //     complete: () => {
+  //       this.deleteImageFromSupabase(this.imageUrl);
+  //     },
+  //   });
+  // }
+
+  deleteImageFromSupabase(image_url: string) {
+    this.productsService.deleteImage(image_url).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        this.deleteProductFromSupabase(this.product_id);
+        this.popupService.openPopup('SUCCESS', 'Deleted product');
+        this.stripeId = '';
+        this.imageUrl = '';
+        this.product_id = 0;
+      },
+    });
+  }
+
+  deleteProductFromSupabase(id: number) {
+    this.productsService.deleteProduct(id).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {},
+    });
+  }
+
+  stripeId = '';
+  imageUrl = '';
+  product_id = 0;
+  deleteProduct(event: ProductEvent) {
+    this.stripeId = event.stripe_id;
+    this.imageUrl = event.image_url;
+    this.product_id = event.product_id;
+    this.deleteImageFromSupabase(this.imageUrl);
+  }
+}
+
+export interface ProductEvent {
+  stripe_id: string;
+  image_url: string;
+  product_id: number;
 }
