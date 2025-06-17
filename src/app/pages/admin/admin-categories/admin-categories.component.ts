@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AdminCategoriesFormComponent } from '../../../components/elements/admin-categories-form/admin-categories-form.component';
-import { Category, CategoryService } from '../../../services/category.service';
+import { CategoryService } from '../../../services/category.service';
+import { Category } from '../../../services/interfaces/category.interface';
 import { SpinnerComponent } from '../../../components/elements/spinner/spinner.component';
 import { AdminCategoriesTableComponent } from '../../../components/elements/admin-categories-table/admin-categories-table.component';
 import { PopupService } from '../../../services/popup.service';

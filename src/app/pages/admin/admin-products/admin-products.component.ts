@@ -8,7 +8,8 @@ import { AdminProductsTableComponent } from '../../../components/elements/admin-
 import { PaginationComponent } from '../../../components/elements/pagination/pagination.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopupService } from '../../../services/popup.service';
-import { Category, CategoryService } from '../../../services/category.service';
+import { CategoryService } from '../../../services/category.service';
+import { Category } from '../../../services/interfaces/category.interface';
 
 @Component({
   selector: 'app-admin-products',
@@ -77,8 +78,8 @@ export class AdminProductsComponent {
       });
   }
 
-  priceId: any = '';
-  productId: any = '';
+  priceId: string = '';
+  productId: string = '';
   addToStripe(name: string, description: string, amount: number) {
     this.stripeService
       .createProduct({

@@ -4,6 +4,7 @@ import { environment } from '../../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { StripeProductResponse } from '../interfaces/products.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class StripeService {
     amount: number;
     currency?: string;
     recurring?: { interval: 'month' | 'year'; interval_count?: number };
-  }): Observable<any> {
+  }): Observable<StripeProductResponse> {
     const transformedData = {
       ...data,
       amount: Math.round(data.amount * 100),
@@ -35,11 +36,7 @@ export class StripeService {
       type: 'good',
     };
 
-    return this.http.post(this.API, transformedData);
-  }
-
-  getProducts(): Observable<any> {
-    return this.http.get(this.API);
+    return this.http.post<StripeProductResponse>(this.API, transformedData);
   }
 
   deleteProduct(productId: string) {

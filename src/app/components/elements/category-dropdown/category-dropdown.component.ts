@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Category } from '../../../services/category.service';
+import { Category } from '../../../services/interfaces/category.interface';
 
 @Component({
   selector: 'app-category-dropdown',

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Category } from '../../../services/category.service';
+import { Category } from '../../../services/interfaces/category.interface';
 
 @Component({
   selector: 'app-admin-products-form',

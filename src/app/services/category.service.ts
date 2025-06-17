@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { SupabaseService } from './supabase/supabase.service';
+import { Category } from './interfaces/category.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -53,8 +54,3 @@ export class CategoryService {
     );
   }
 }
-
-export type Category = {
-  id: number;
-  name: string;
-};

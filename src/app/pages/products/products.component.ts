@@ -11,7 +11,8 @@ import { PaginationComponent } from '../../components/elements/pagination/pagina
 import { CommonModule } from '@angular/common';
 import { CategoryDropdownComponent } from '../../components/elements/category-dropdown/category-dropdown.component';
 import { SortDropdownComponent } from '../../components/elements/sort-dropdown/sort-dropdown.component';
-import { Category, CategoryService } from '../../services/category.service';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../services/interfaces/category.interface';
 
 @Component({
   selector: 'app-products',
