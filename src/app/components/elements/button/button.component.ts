@@ -10,6 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() text?: string;
+  @Input() type?: string;
   @Input() disabled?: boolean;
   @Output() send = new EventEmitter<boolean>();
 }
