@@ -11,6 +11,8 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CheckoutComponent {
   @Input() mobile?: boolean;
+  @Input() isLoggedIn?: boolean;
   @Input() productsSum?: number;
   @Output() checkout = new EventEmitter();
+  @Output() emitDelete = new EventEmitter();
 }

@@ -1,12 +1,30 @@
 <div class="w-full h-full flex flex-col md:flex-row bg-white text-black dark:bg-gray-300 dark:text-white">
     <div class="md:hidden">
         @if(productsCount.length > 0){
-        <app-checkout [mobile]="true" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
+        <app-checkout [mobile]="true" [productsSum]="productsSum" (checkout)="goToCheckout()"
+            [isLoggedIn]="isLoggedIn()" (emitDelete)="deleteCart()"></app-checkout>
         }
     </div>
     <div class="md:w-3/4 w-4/4">
         <h1 class="text-4xl text-center font-bold text-slate-800  hidden justify-center md:flex">
             Checkout</h1>
+        @if(productsCount.length > 0){
+        <div class="justify-end hidden md:flex">
+            <button class="flex bg-sky-300 p-1 rounded-md cursor-pointer mx-2 hover:opacity-80" (click)="deleteCart()">
+                Clear cart
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 7l16 0" />
+                    <path d="M10 11l0 6" />
+                    <path d="M14 11l0 6" />
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                </svg>
+            </button>
+        </div>
+        }
         @if(productsCount.length === 0){
         <p class="text-xl text-center text-gray-500 font-light">Add something to your cart!</p>
         }
@@ -22,7 +40,8 @@
     </div>
     <div class="w-1/4 hidden md:flex flex-col mx-4">
         @if(productsCount.length > 0){
-        <app-checkout [mobile]="false" [productsSum]="productsSum" (checkout)="goToCheckout()"></app-checkout>
+        <app-checkout [mobile]="false" [productsSum]="productsSum" (checkout)="goToCheckout()"
+            [isLoggedIn]="isLoggedIn()"></app-checkout>
         }
     </div>
 </div>

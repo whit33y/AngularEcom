@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ProductsService } from '../../services/products.service';
 import {
@@ -10,6 +10,7 @@ import { CartCardSkeletonComponent } from '../../components/elements/cart-card-s
 import { CheckoutComponent } from '../../components/elements/checkout/checkout.component';
 import { Router } from '@angular/router';
 import { PaymentService } from '../../services/stripe/payment.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -23,11 +24,13 @@ export class CartComponent {
   private paymentService = inject(PaymentService);
   private productService = inject(ProductsService);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
   products: Product[] = [];
   productsCount: ProductCount[] = [];
   productsSum: number = 0;
   loading: boolean = false;
+  isLoggedIn = computed(() => this.authService.sessionStatus());
   ngOnInit() {
     const cart = this.cartService.cart();
     for (let i = 0; i < cart.length; i++) {
@@ -70,7 +73,7 @@ export class CartComponent {
       .checkout(items)
       .then((data) => {
         if (data.url) {
-          this.cartService.deleteCart();
+          this.deleteCart();
           window.location.href = data.url;
         } else {
           console.error('No checkout URL in response');
@@ -83,5 +86,10 @@ export class CartComponent {
 
   openDetails(id: number) {
     this.router.navigate(['/products', id]);
+  }
+
+  deleteCart() {
+    this.cartService.deleteCart();
+    window.location.reload();
   }
 }
