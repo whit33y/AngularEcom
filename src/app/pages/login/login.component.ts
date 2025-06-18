@@ -46,7 +46,7 @@ export class LoginComponent {
         this.popupService.openPopup('ERROR', this.error);
         console.error(error);
       } else {
-        this.popupService.openPopup('SUCCESS', 'Pomyślnie zalogowano');
+        this.popupService.openPopup('SUCCESS', 'Succesfully logged in!');
         this.loading = true;
         setTimeout(() => {
           this.loading = false;
