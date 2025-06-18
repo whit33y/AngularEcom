@@ -18,7 +18,11 @@ TODO
 
 ## Screenshots from the App
 
-TODO
+### Web/phone login/register
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/63ee864a-cf21-402d-8421-7cb8d58fef3e" width="800 />
+</p>
+
 
 ## Insallation
 
