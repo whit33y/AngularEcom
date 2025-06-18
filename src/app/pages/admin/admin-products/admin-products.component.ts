@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from '../../../services/interfaces/products.interface';
 import { StripeService } from '../../../services/stripe/stripe.service';
@@ -30,7 +30,6 @@ export class AdminProductsComponent {
   private popupService = inject(PopupService);
   constructor() {
     this.getProducts();
-    // this.getStripeProducts();
   }
 
   showForm = false;
@@ -153,18 +152,6 @@ export class AdminProductsComponent {
       },
     });
   }
-
-  // stripeProducts = [];
-  // getStripeProducts() {
-  //   this.stripeService.getProducts().subscribe({
-  //     next: (products) => {
-  //       console.log('Produkty ze Stripe:', products);
-  //     },
-  //     error: (err) => {
-  //       console.error('Error loading stripe products:', err);
-  //     },
-  //   });
-  // }
 
   getCategories() {
     this.categoryService.getCategories().subscribe({

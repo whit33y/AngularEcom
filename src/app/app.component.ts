@@ -9,7 +9,7 @@ import { PopupComponent } from './components/shared/popup/popup.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CartService } from './services/cart.service';
 import { AuthService } from './services/auth.service';
-import { filter, firstValueFrom } from 'rxjs';
+import { filter } from 'rxjs';
 import { FooterComponent } from './components/shared/footer/footer.component';
 
 @Component({
