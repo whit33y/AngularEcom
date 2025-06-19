@@ -18,7 +18,7 @@ TODO
 
 ## Screenshots from the App
 
-### Login/register pages
+## Login/register pages
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/47eaf249-2608-4487-9208-2e4b357bf219" width="800" />
@@ -27,7 +27,7 @@ TODO
 <img src="https://github.com/user-attachments/assets/f0a3055a-31de-40fc-af68-e4ea9fbc951d" width="365" />
 </p>
 
-### Main product list page
+## Main product list page
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/ca5a0320-bb54-45eb-99ca-b758641ca0bf" width="800"/>
@@ -36,7 +36,7 @@ TODO
 <img src="https://github.com/user-attachments/assets/e4cc52af-37bd-4382-a03e-7c552137210b" width="365"/>
 </p>
 
-### Product details page
+## Product details page
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/c268710a-7f8c-4ca3-9489-7224bcfaca38" width="800"/>
@@ -44,7 +44,7 @@ TODO
 <img src="https://github.com/user-attachments/assets/6f756b3b-e8d9-4a1f-90d6-41a6a12cdd47" width="365"/>
 </p>
 
-### Cart and checkout pages
+## Cart and checkout pages
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/51d91a50-a0e8-467b-9a70-86e7dcdfde75" width="800"/>
@@ -53,7 +53,7 @@ TODO
 <img src="https://github.com/user-attachments/assets/cd466943-1c2e-4ad8-9392-c3cdc8399dc7" width="365"/>
 </p>
 
-### Admin management pages
+## Admin management pages
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/12443e3c-299d-4eb9-a858-3c41c2cbacd3" width="800"/>
@@ -67,7 +67,7 @@ TODO
 <img src="https://github.com/user-attachments/assets/2e2e2524-42a2-4ae2-a0c7-b62723417f69" width="365"/>
 </p>
 
-### Light/dark mode
+## Light/dark mode
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/e02434bd-fd69-4ed9-8797-17b742176389" width="800"/>
